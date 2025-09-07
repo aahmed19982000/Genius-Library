@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}مكتبة الطباعة{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="{% url 'home' %}">مكتبة الطباعة</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="{% url 'home' %}">الرئيسية</a></li>
+                    <li><a href="#">خدماتنا</a></li>
+                    <li><a href="{% url 'track_order' %}">تتبع الطلب</a></li>
+                    <li><a href="{% url 'contact' %}">تواصل معنا</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+
+
+    <script src="{% static 'js/header.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

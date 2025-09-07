@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}تتبع الطلب{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/track_order.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="track-order-container">
+    <header class="track-header">
+        <h1><i class="fas fa-box-open"></i> تتبع الطلب</h1>
+        <p>أدخل رقم طلبات لمعرفة حالة الشحنة والموعد</p>
+    </header>
+    
+    <div class="divider"></div>
+    
+    <section class="search-section">
+        <h2><i class="fas fa-search"></i> البحث عن الطلب</h2>
+        
+        <div class="example-box">
+            <i class="fas fa-info-circle"></i>
+            <div class="example-text">
+                أدخل رقم الطلب الذي تم إرساله إليك عبر الرسائل النصية
+                <span class="example-code">مثال: ORD-1234567890-123</span>
+            </div>
+        </div>
+        
+        <form class="track-form">
+            <div class="input-group">
+                <input type="text" class="track-input" placeholder="أدخل رقم الطلب هنا" required>
+                <i class="fas fa-truck input-icon"></i>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-location-arrow"></i> تتبع الطلب
+            </button>
+        </form>
+    </section>
+    
+    <div class="divider"></div>
+    
+    <section class="help-section">
+        <h2><i class="fas fa-question-circle"></i> تحتاج مساعدة؟</h2>
+        
+        <ul class="help-list">
+            <li>
+                <div class="help-number">1</div>
+                <div class="help-text">تأكد من إدخال رقم الطلب بشكل صحيح</div>
+            </li>
+            <li>
+                <div class="help-number">2</div>
+                <div class="help-text">رقم الطلب يبدأ بـ ORD متبوعاً بأرقام</div>
+            </li>
+            <li>
+                <div class="help-number">3</div>
+                <div class="help-text">إذا لم تتمكن من العثور على الطلب تواصل معنا على الرقم: <span class="highlight">4557 123 50</span></div>
+            </li>
+        </ul>
+        
+        <div class="contact-card">
+            <div class="contact-icon">
+                <i class="fas fa-headset"></i>
+            </div>
+            <div class="contact-content">
+                <h3>خدمة العملاء على مدار الساعة</h3>
+                <p>لا تتردد في التواصل معنا في أي وقت</p>
+            </div>
+            <button class="btn btn-secondary contact-btn">
+                <i class="fas fa-phone-alt"></i> تواصل معنا
+            </button>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.querySelector('.track-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const orderNumber = document.querySelector('.track-input').value;
+        
+        if (orderNumber.trim() === '') {
+            showNotification('يرجى إدخال رقم الطلب', 'error');
+            return;
+        }
+        
+        if (!isValidOrderNumber(orderNumber)) {
+            showNotification('رقم الطلب غير صحيح. يجب أن يبدأ بـ ORD- ويتبعه أرقام', 'error');
+            return;
+        }
+        
+        showNotification(`جاري تتبع الطلب: ${orderNumber}`, 'success');
+        
+        // محاكاة عملية التتبع
+        setTimeout(() => {
+            // هنا سيتم تحميل نتيجة التتبع
+        }, 1500);
+    });
+
+    document.querySelector('.contact-btn').addEventListener('click', function() {
+        showNotification('سيتم الاتصال بخدمة العملاء على الرقم: 4557 123 50', 'info');
+    });
+
+    function isValidOrderNumber(orderNumber) {
+        const pattern = /^ORD-\d{10}-\d{3}$/;
+        return pattern.test(orderNumber);
+    }
+
+    function showNotification(message, type) {
+        // إنشاء عنصر الإشعار
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.innerHTML = `
+            <i class="fas ${type === 'error' ? 'fa-exclamation-circle' : type === 'success' ? 'fa-check-circle' : 'fa-info-circle'}"></i>
+            <span>${message}</span>
+            <button class="close-btn"><i class="fas fa-times"></i></button>
+        `;
+        
+        // إضافة الإشعار إلى الصفحة
+        document.body.appendChild(notification);
+        
+        // إظهار الإشعار بتحريكه
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 10);
+        
+        // إخفاء الإشعار تلقائياً بعد 5 ثوان
+        setTimeout(() => {
+            closeNotification(notification);
+        }, 5000);
+        
+        // إضافة حدث لإغلاق الإشعار عند النقر على زر الإغلاق
+        notification.querySelector('.close-btn').addEventListener('click', function() {
+            closeNotification(notification);
+        });
+    }
+
+    function closeNotification(notification) {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }
+</script>
+{% endblock %}

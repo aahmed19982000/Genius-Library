@@ -1,0 +1,60 @@
+{% load static %}
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}مكتبة الطباعة{% endblock %}</title>
+
+    <!-- أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- ملف CSS للفوتر -->
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- الفوتر -->
+    <footer class="site-footer">
+        <div class="footer-main">
+            
+            <!-- مكتبة الطباعة -->
+            <div class="footer-col footer-library">
+                <div class="footer-title">
+                    <i class="fas fa-print"></i>
+                    <span>مكتبة الطباعة</span>
+                </div>
+                <div class="footer-desc">
+                    خدمات طباعة وتصوير احترافية بجودة عالية وأسعار مناسبة
+                </div>
+            </div>
+
+            <!-- معلومات التواصل -->
+            <div class="footer-col footer-contact">
+                <div class="footer-title">معلومات التواصل</div>
+                <ul class="contact-list">
+                    <li><i class="fas fa-phone"></i> <span>+966 50 123 4567</span></li>
+                    <li><i class="fas fa-envelope"></i> <span>info@printlibrary.sa</span></li>
+                    <li><i class="fas fa-map-marker-alt"></i> <span>الرياض، المملكة العربية السعودية</span></li>
+                </ul>
+            </div>
+
+            <!-- روابط سريعة -->
+            <div class="footer-col footer-links">
+                <div class="footer-title">روابط سريعة</div>
+                <ul>
+                    <li><a href="#">خدماتنا</a></li>
+                    <li><a href="{% url 'track_order' %}">تتبع الطلب</a></li>
+                    <li><a href="{% url 'contact' %}">تواصل معنا</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- حقوق النشر -->
+        <div class="footer-bottom">
+            © 2025 مكتبة الطباعة. جميع الحقوق محفوظة.
+        </div>
+    </footer>
+
+</body>
+</html>

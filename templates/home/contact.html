@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}تواصل معنا - مكتبة الطباعة{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+
+<!-- قسم الهيرو -->
+<section class="hero">
+    <div class="hero-container">
+        <h1>تواصل معنا</h1>
+        <p>نحن هنا لمساعدتك في جميع احتياجاتك من الطباعة والتصوير. تواصل معنا في أي وقت</p>
+    </div>
+</section>
+
+<!-- المحتوى الرئيسي -->
+<main class="main-container">
+    <div class="content-wrapper">
+        <!-- معلومات التواصل -->
+        <div class="contact-info">
+            <h2>معلومات التواصل</h2>
+            <div class="info-card">
+                <div class="info-icon"><i class="fas fa-phone"></i></div>
+                <div class="info-content">
+                    <h3>الهاتف</h3>
+                    <p class="highlight">+966 50 123 4567</p>
+                    <p>من الساعة 8 صباحاً حتى 10 مساءً</p>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                <div class="info-content">
+                    <h3>البريد الإلكتروني</h3>
+                    <p class="highlight">info@printlibrary.sa</p>
+                    <p>نرد خلال 24 ساعة</p>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="info-content">
+                    <h3>العنوان</h3>
+                    <p class="highlight">شارع الملك فهد، حي الخليج</p>
+                    <p>الرياض 12211، المملكة العربية السعودية</p>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="info-icon"><i class="fas fa-clock"></i></div>
+                <div class="info-content">
+                    <h3>ساعات العمل</h3>
+                    <p>السبت - الخميس: 8:00 ص - 10:00 م</p>
+                    <p>الجمعة: 2:00 م - 10:00 م</p>
+                </div>
+            </div>
+            <!-- روابط سريعة -->
+            <div class="quick-links">
+                <h3>روابط سريعة</h3>
+                <div class="social-icons">
+                    <a href="#" class="social-icon" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="quick-actions">
+                    <a href="#" class="btn btn-outline"><i class="fas fa-print"></i> طلب طباعة جديدة</a>
+                    <a href="#" class="btn btn-outline"><i class="fas fa-search"></i> تتبع طلب موجود</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- نموذج التواصل -->
+        <div class="contact-form-section">
+            <h2>أرسل لنا رسالة</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">الاسم الكامل *</label>
+                    <input type="text" id="name" placeholder="أدخل اسمك الكامل" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني *</label>
+                    <input type="email" id="email" placeholder="example@gmail.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">الرسالة *</label>
+                    <textarea id="message" rows="5" placeholder="أكتب رسالتك هنا..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-green">
+                    <i class="fas fa-paper-plane"></i> إرسال الرسالة
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- قسم الأسئلة الشائعة -->
+    <section class="faq-section">
+        <h2>الأسئلة الشائعة</h2>
+        <div class="faq-container">
+            <div class="faq">
+                <div class="faq-question"><h3>هل يمكنني إلغاء الطلب؟</h3></div>
+                <div class="faq-answer">يمكنك إلغاء الطلب خلال ساعة من بدء عملية الطباعة.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question"><h3>كم يستغرق تنفيذ الطلب؟</h3></div>
+                <div class="faq-answer">عادةً ما يتم تنفيذ الطلب خلال 24 إلى 48 ساعة حسب حجم الطلب ونوع الخدمة.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question"><h3>ما هي طرق الدفع المتاحة؟</h3></div>
+                <div class="faq-answer">نقبل الدفع نقداً عند الاستلام أو عبر التحويل البنكي.</div>
+            </div>
+            <div class="faq">
+                <div class="faq-question"><h3>هل تقدمون خدمة التوصيل؟</h3></div>
+                <div class="faq-answer">نعم، نقدم خدمة التوصيل لجميع مناطق الرياض برسوم رمزية.</div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+<script>
+    // FAQ toggle
+    document.querySelectorAll('.faq-question').forEach(function(q){
+        q.addEventListener('click', function(){
+            var faq = q.parentElement;
+            faq.classList.toggle('active');
+        });
+    });
+</script>
+
+{% endblock %}
