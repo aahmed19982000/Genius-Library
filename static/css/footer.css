@@ -1,9 +1,23 @@
-/* ===== Footer Styling ===== */
+/* تنسيق عام */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Cairo", sans-serif;
+    direction: rtl;
+}
+
+/* ===== تنسيق الفوتر ===== */
 .site-footer {
     background-color: #f4f6fa;
     color: #14375A;
     padding: 40px 20px 20px;
     font-family: "Cairo", sans-serif;
+    margin-top: 50px;
+    border-top: 3px solid #00B6E6;
 }
 
 .footer-main {
@@ -23,25 +37,26 @@
 .footer-title {
     font-weight: bold;
     font-size: 18px;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
     gap: 8px;
     color: #14375A;
 }
 
-/* 🔹 حجم اللوجو في الفوتر */
-.footer-logo {
-    width: 120px;       /* العرض */
-    height: auto;       /* الارتفاع تلقائي */
-    max-height: 60px;   /* أقصى ارتفاع */
-    object-fit: contain; /* الحفاظ على تناسق الصورة */
+/* تنسيق اللوجو - تم تعديل الحجم هنا */
+.footer-library .footer-title .logo {
+    width: 220px;        /* تم تحديد حجم مناسب */
+    height: auto;
+    max-height: 600px;   /* أقصى ارتفاع */
+    object-fit: contain;
 }
 
 .footer-desc {
     font-size: 14px;
     line-height: 1.8;
     color: #555;
+    margin-top: 10px;
 }
 
 /* معلومات التواصل */
@@ -52,17 +67,18 @@
 }
 
 .contact-list li {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     color: #14375A;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .contact-list i {
     color: #00B6E6;
-    font-size: 15px;
+    font-size: 16px;
+    width: 20px;
 }
 
 /* روابط سريعة */
@@ -73,46 +89,80 @@
 }
 
 .footer-links li {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .footer-links a {
     color: #14375A;
     text-decoration: none;
-    font-size: 14px;
-    transition: color 0.3s;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    display: block;
+    padding: 5px 0;
 }
 
 .footer-links a:hover {
     color: #E94B35;
+    padding-right: 8px;
 }
 
-/* الحقوق */
+/* حقوق النشر */
 .footer-bottom {
     text-align: center;
     border-top: 1px solid #00B6E6;
-    margin-top: 25px;
-    padding-top: 12px;
-    font-size: 13px;
+    margin-top: 30px;
+    padding-top: 15px;
+    font-size: 14px;
     color: #14375A;
 }
 
 /* =====================
-   Responsive Design
+   التصميم المتجاوب
 ===================== */
 @media (max-width: 768px) {
     .footer-main {
         flex-direction: column;
         align-items: center;
+        text-align: center;
+        gap: 25px;
     }
 
     .footer-col {
         text-align: center;
+        width: 100%;
     }
 
-    /* 🔹 حجم أصغر للوجو على الموبايل */
-    .footer-logo {
-        width: 90px;
-        max-height: 50px;
+    .footer-title {
+        justify-content: center;
+    }
+    
+    /* تعديل حجم اللوجو على الشاشات الصغيرة */
+    .footer-library .footer-title .logo {
+        width: 80px;
+        max-height: 45px;
+    }
+    
+    .contact-list li {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-footer {
+        padding: 30px 15px 15px;
+    }
+    
+    .footer-title {
+        font-size: 16px;
+    }
+    
+    .footer-desc, 
+    .contact-list li, 
+    .footer-links a {
+        font-size: 14px;
+    }
+    
+    .footer-bottom {
+        font-size: 13px;
     }
 }

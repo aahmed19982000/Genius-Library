@@ -1,68 +1,80 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}الرئيسية - مكتبة الطباعة{% endblock %}
+{% block meta_title %}الرئيسية - مكتبة العبقري | طباعة وتصوير احترافية{% endblock %}
+{% block meta_description %}خدمات طباعة وتصوير بجودة عالية مع توصيل سريع للمنازل في جميع أنحاء المدينة. ارفع ملفاتك واحصل على عرض سعر فوري.{% endblock %}
+{% block meta_keywords %}طباعة, تصوير, توصيل, مستندات, مكتبة العبقري{% endblock %}
+{% block meta_author %}مكتبة العبقري - احمد ابراهيم{% endblock %}
+
+{% block og_title %}الرئيسية - مكتبة العبقري | طباعة وتصوير احترافية{% endblock %}
+{% block og_description %}خدمات طباعة وتصوير بجودة عالية مع توصيل سريع للمنازل في جميع أنحاء المدينة. ارفع ملفاتك واحصل على عرض سعر فوري.{% endblock %}
+{% block og_url %}https://www.elgeniuslibrary.com/{% endblock %}
+{% block og_image %}https://www.elgeniuslibrary.com/static/images/logo.png{% endblock %}
+
+{% block twitter_title %}الرئيسية - مكتبة العبقري | طباعة وتصوير احترافية{% endblock %}
+{% block twitter_description %}خدمات طباعة وتصوير بجودة عالية مع توصيل سريع للمنازل في جميع أنحاء المدينة. ارفع ملفاتك واحصل على عرض سعر فوري.{% endblock %}
+{% block twitter_image %}https://www.elgeniuslibrary.com/static/images/logo.png{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock %}
 
 {% block content %}
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>اطبع مستنداتك بسهولة</h1>
-            <p>خدمات طباعة وتصوير احترافية بجودة عالية مع إمكانية التوصيل للمنازل في جميع أنحاء المدينة</p>
-            <a href="#" class="btn btn-green">ابدأ الآن</a>
-        </div>
-    </section>
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <h1>اطبع مستنداتك بسهولة</h1>
+        <p>خدمات طباعة وتصوير احترافية بجودة عالية مع إمكانية التوصيل للمنازل في جميع أنحاء المدينة</p>
+        <a href="#" class="btn btn-green">ابدأ الآن</a>
+    </div>
+</section>
 
-    <!-- Services Section -->
-    <section class="services-section">
-        <div class="container">
-            <h2 class="section-title">خدماتنا المتخصصة</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-truck"></i></div>
-                    <h3>توصيل للمنازل</h3>
-                    <p>خدمة توصيل سريعة وآمنة لجميع أنحاء المدينة</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-print"></i></div>
-                    <h3>طباعة أبيض وأسود</h3>
-                    <p>طباعة اقتصادية للمستندات والأوراق الرسمية</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
-                    <h3>طباعة ملونة</h3>
-                    <p>طباعة ملونة عالية الدقة للعروض التقديمية والمشاريع</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-copy"></i></div>
-                    <h3>تصوير</h3>
-                    <p>تصوير المستندات والأوراق بجودة عالية وأسعار مناسبة</p>
-                </div>
+<!-- Services Section -->
+<section class="services-section">
+    <div class="container">
+        <h2 class="section-title">خدماتنا المتخصصة</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-truck"></i></div>
+                <h3>توصيل للمنازل</h3>
+                <p>خدمة توصيل سريعة وآمنة لجميع أنحاء المدينة</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-print"></i></div>
+                <h3>طباعة أبيض وأسود</h3>
+                <p>طباعة اقتصادية للمستندات والأوراق الرسمية</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+                <h3>طباعة ملونة</h3>
+                <p>طباعة ملونة عالية الدقة للعروض التقديمية والمشاريع</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-copy"></i></div>
+                <h3>تصوير</h3>
+                <p>تصوير المستندات والأوراق بجودة عالية وأسعار مناسبة</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Upload Section -->
-    <section class="upload-section">
-        <div class="container upload-flex">
-            <div class="upload-box">
-                <div class="upload-icon"><i class="fas fa-print"></i></div>
-                <h2>ابدأ طلبك الآن</h2>
-                <p>ارفع ملفاتك واحصل على عرض سعر فوري</p>
-                <a href="#" class="btn btn-green">رفع الملفات</a>
-            </div>
-            <div class="why-choose">
-                <h3>لماذا تختار مكتبتنا؟</h3>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> جودة عالية</li>
-                    <li><i class="fas fa-check-circle"></i> توصيل سريع</li>
-                    <li><i class="fas fa-check-circle"></i> دعم على مدار الساعة</li>
-                </ul>
-            </div>
+<!-- Upload Section -->
+<section class="upload-section">
+    <div class="container upload-flex">
+        <div class="upload-box">
+            <div class="upload-icon"><i class="fas fa-print"></i></div>
+            <h2>ابدأ طلبك الآن</h2>
+            <p>ارفع ملفاتك واحصل على عرض سعر فوري</p>
+            <a href="#" class="btn btn-green">رفع الملفات</a>
         </div>
-    </section>
+        <div class="why-choose">
+            <h3>لماذا تختار مكتبتنا؟</h3>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> جودة عالية</li>
+                <li><i class="fas fa-check-circle"></i> توصيل سريع</li>
+                <li><i class="fas fa-check-circle"></i> دعم على مدار الساعة</li>
+            </ul>
+        </div>
+    </div>
+</section>
 {% endblock %}
