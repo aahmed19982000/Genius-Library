@@ -1,11 +1,12 @@
 /* CSS Variables */
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #e74c3c;
-    --light-color: #ecf0f1;
-    --dark-color: #2c3e50;
-    --text-color: #333;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --primary-color: #14375A; /* أزرق داكن من اللوجو */
+    --secondary-color: #E94B35; /* برتقالي من اللوجو */
+    --accent-color: #00B6E6; /* أزرق فاتح من العدسات */
+    --light-color: #f4f6fa; /* رمادي فاتح */
+    --dark-color: #14375A;
+    --text-color: #14375A;
+    --shadow: 0 4px 6px rgba(20,55,90,0.08);
     --transition: all 0.3s ease;
 }
 
@@ -14,11 +15,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Cairo', 'Tahoma', Arial, sans-serif;
 }
 
 body {
-    background-color: #f9f9f9;
+    background-color: var(--light-color);
     color: var(--text-color);
     line-height: 1.6;
 }
@@ -32,7 +33,7 @@ body {
 
 /* Header Styles */
 header {
-    background-color: white;
+    background-color: #fff;
     box-shadow: var(--shadow);
     position: sticky;
     top: 0;
@@ -53,6 +54,12 @@ header {
     text-decoration: none;
 }
 
+/* 🔹 ضبط حجم اللوجو */
+.logo img {
+    height: 80px;
+    width: auto;
+}
+
 .nav-links {
     display: flex;
     list-style: none;
@@ -65,7 +72,7 @@ header {
 
 .nav-links a {
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--primary-color);
     font-weight: 500;
     transition: var(--transition);
     padding: 0.5rem 0;
@@ -110,12 +117,11 @@ header {
     .hamburger {
         display: flex;
     }
-    
     .nav-links {
         position: fixed;
         top: 70px;
         right: -100%;
-        background-color: white;
+        background-color: #fff;
         width: 80%;
         height: calc(100vh - 70px);
         flex-direction: column;
@@ -125,12 +131,15 @@ header {
         transition: var(--transition);
         box-shadow: var(--shadow);
     }
-    
     .nav-links.active {
         right: 0;
     }
-    
     .nav-links li {
         margin: 1.5rem 0;
+    }
+    /* 🔹 حجم أصغر للوجو على الموبايل */
+    .logo img {
+        height: 62px;
+        width: 170px;
     }
 }

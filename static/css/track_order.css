@@ -1,329 +1,389 @@
-/* Base RTL and font */
-body {
-    direction: rtl;
-    background: #fff;
-    color: #222;
-    font-family: 'Cairo', 'Tajawal', Arial, Helvetica, sans-serif;
+/* تنسيقات عامة */
+* {
     margin: 0;
     padding: 0;
-    min-height: 100vh;
+    box-sizing: border-box;
+    font-family: 'Cairo', 'Tajawal', Arial, sans-serif;
 }
 
-/* Container */
-.container {
+body {
+    background-color: #f4f6fa; /* رمادي فاتح قريب من خلفية اللوجو */
+    color: #14375A; /* أزرق داكن من اللوجو */
+    line-height: 1.6;
+    padding: 20px;
+    background-image: none;
+}
+
+.track-order-container {
     max-width: 800px;
-    margin: 40px auto 0 auto;
-    background: #fff;
-    border-radius: 14px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-    padding: 32px 24px;
+    margin: 30px auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(20,55,90,0.08);
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Header */
-header {
+.track-order-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, #14375A, #E94B35, #00B6E6);
+}
+
+/* تنسيقات الرأس */
+.track-header {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 30px;
 }
 
-header h1 {
-    font-size: 2.3rem;
-    font-weight: 800;
-    color: #2c3e50;
+.track-header h1 {
+    color: #14375A;
+    font-size: 2.2rem;
     margin-bottom: 10px;
-    letter-spacing: 0.5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
 }
 
-header p {
-    font-size: 1.15rem;
-    color: #666;
-    font-weight: 400;
-    line-height: 1.7;
-    margin-bottom: 0;
+.track-header h1 i {
+    margin-left: 15px;
+    color: #E94B35;
 }
 
-/* Divider */
+.track-header p {
+    color: #E94B35;
+    font-size: 1.1rem;
+}
+
+/* الخط الفاصل */
 .divider {
     height: 1px;
-    background: linear-gradient(to right, transparent, #e0e0e0, transparent);
-    margin: 32px 0;
-    border: none;
+    background: linear-gradient(to right, transparent, #00B6E6, transparent);
+    margin: 30px 0;
 }
 
-/* Search Section */
-.search-section {
-    background: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-    padding: 28px 20px;
-    margin-bottom: 32px;
-}
-
+/* قسم البحث */
 .search-section h2 {
-    color: #2c3e50;
-    font-size: 1.35rem;
-    font-weight: 700;
-    margin-bottom: 18px;
+    color: #14375A;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
-    gap: 8px;
 }
 
-.example {
-    background: #e8f4fc;
-    border-right: 4px solid #3498db;
-    padding: 12px;
+.search-section h2 i {
+    margin-left: 10px;
+    color: #E94B35;
+}
+
+.example-box {
+    background-color: #eaf0f6;
+    border-right: 4px solid #00B6E6;
+    padding: 15px;
     border-radius: 8px;
-    margin-bottom: 18px;
-    font-size: 1rem;
-    color: #666;
-    line-height: 1.7;
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
 }
 
-.example span {
-    font-weight: 600;
-    color: #222;
-    font-size: 1rem;
+.example-box i {
+    color: #14375A;
+    font-size: 1.5rem;
+    margin-left: 15px;
+}
+
+.example-text {
+    color: #14375A;
+    font-weight: 500;
+}
+
+.example-code {
     display: block;
-    margin-top: 4px;
+    background-color: #d0e4f5;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 8px;
+    font-family: monospace;
+    font-weight: bold;
+    color: #14375A;
 }
 
 .track-form {
-    display: flex;
-    gap: 12px;
-    width: 100%;
-    margin-top: 18px;
+    margin-top: 25px;
 }
 
 .input-group {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    position: relative;
+    margin-bottom: 20px;
 }
 
 .track-input {
-    padding: 13px 14px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-    background: #f8f8f8;
-    color: #222;
-    outline: none;
-    transition: border-color 0.2s;
-    text-align: right;
-    font-family: inherit;
+    width: 100%;
+    padding: 15px 50px 15px 15px;
+    border: 2px solid #00B6E6;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    color: #14375A;
+    background: #f4f6fa;
 }
 
 .track-input:focus {
-    border-color: #198754;
-    background: #fff;
-}
-
-/* Buttons */
-.btn-green, .btn-blue {
-    padding: 13px 28px;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s, box-shadow 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
     outline: none;
-    font-family: inherit;
+    border-color: #E94B35;
+    box-shadow: 0 0 0 3px rgba(233,75,53,0.15);
 }
 
-.btn-green {
-    background: #198754;
-    color: #fff;
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #00B6E6;
+    font-size: 1.2rem;
 }
 
-.btn-green:hover {
-    background: #157347;
-    box-shadow: 0 4px 12px rgba(25,135,84,0.12);
-}
-
-.btn-blue {
-    background: #007BFF;
-    color: #fff;
-}
-
-.btn-blue:hover {
-    background: #0056b3;
-    box-shadow: 0 4px 12px rgba(0,123,255,0.12);
-}
-
-/* Help Section */
-.help-section {
-    background: #fff;
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    border: none;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-    padding: 28px 20px;
-    margin-bottom: 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
+.btn i {
+    margin-right: 8px;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #14375A, #E94B35);
+    color: white;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #E94B35, #14375A);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(233,75,53,0.15);
+}
+
+/* قسم المساعدة */
 .help-section h2 {
-    color: #2c3e50;
-    font-size: 1.35rem;
-    font-weight: 700;
-    margin-bottom: 18px;
+    color: #14375A;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
-    gap: 8px;
+}
+
+.help-section h2 i {
+    margin-left: 10px;
+    color: #E94B35;
 }
 
 .help-list {
-    list-style-type: none;
-    padding: 0;
-    margin-bottom: 18px;
+    list-style: none;
+    margin-bottom: 30px;
 }
 
 .help-list li {
-    padding: 8px 0;
     display: flex;
     align-items: center;
-    gap: 8px;
-    color: #666;
-    font-size: 1rem;
-    line-height: 1.7;
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: #eaf0f6;
+    border-radius: 10px;
+    border-right: 3px solid #00B6E6;
 }
 
-.help-list li i {
-    color: #198754;
-    font-size: 1.1rem;
-    margin-left: 4px;
+.help-number {
+    background-color: #14375A;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-left: 15px;
+    flex-shrink: 0;
 }
 
-.contact-info {
-    background: #f8f9fa;
-    padding: 16px 0 0 0;
-    border-radius: 8px;
-    text-align: right;
-    border: none;
-    margin-top: 0;
+.help-text {
+    color: #14375A;
 }
 
-.contact-info p {
-    margin-bottom: 12px;
-    color: #666;
-    font-size: 1rem;
-    line-height: 1.7;
+.highlight {
+    color: #E94B35;
+    font-weight: bold;
 }
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 18px 0 8px 0;
-    color: #bbb;
-    font-size: 0.95rem;
-    margin-top: 32px;
-    background: none;
-    border-top: none;
+.contact-card {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to right, #eaf0f6, #d0e4f5);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
 }
 
-/* Font Awesome icons */
-i.fas, i.fa {
-    vertical-align: middle;
+.contact-icon {
+    background-color: #14375A;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-left: 15px;
+}
+
+.contact-content {
+    flex: 1;
+}
+
+.contact-content h3 {
+    color: #14375A;
+    margin-bottom: 5px;
+}
+
+.contact-content p {
+    color: #555;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: #14375A;
+    border: 2px solid #00B6E6;
+}
+
+.btn-secondary:hover {
+    background-color: #E94B35;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(233,75,53,0.15);
 }
 
 /* الإشعارات */
 .notification {
     position: fixed;
     top: 20px;
-    right: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    background: white;
     padding: 15px 20px;
-    border-radius: 8px;
-    color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(20,55,90,0.15);
     display: flex;
     align-items: center;
-    gap: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transform: translateX(100%);
-    opacity: 0;
-    transition: all 0.3s ease;
     z-index: 1000;
-    max-width: 350px;
+    transition: transform 0.3s ease-out;
+    min-width: 300px;
+    max-width: 90%;
 }
 
 .notification.show {
-    transform: translateX(0);
-    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
 .notification.error {
-    background: #e74c3c;
+    border-right: 4px solid #E94B35;
 }
 
 .notification.success {
-    background: #2ecc71;
+    border-right: 4px solid #198754;
 }
 
 .notification.info {
-    background: #3498db;
+    border-right: 4px solid #00B6E6;
 }
 
-.notification .close-btn {
-    background: transparent;
+.notification i {
+    margin-left: 10px;
+    font-size: 1.2rem;
+}
+
+.notification.error i {
+    color: #E94B35;
+}
+
+.notification.success i {
+    color: #198754;
+}
+
+.notification.info i {
+    color: #00B6E6;
+}
+
+.notification span {
+    flex: 1;
+}
+
+.close-btn {
+    background: none;
     border: none;
-    color: white;
+    color: #999;
     cursor: pointer;
-    margin-left: auto;
-    font-size: 14px;
-    padding: 0;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-right: 10px;
+    font-size: 1rem;
 }
 
-/* التصميم المتجاوب */
-@media (max-width: 900px) {
-    .container {
-        max-width: 98vw;
-        padding: 0 8px;
-    }
-    .search-section,
-    .help-section {
-        padding: 20px 8px;
-    }
-    header h1 {
-        font-size: 1.7rem;
-    }
-    header p {
-        font-size: 1rem;
-    }
+.close-btn:hover {
+    color: #E94B35;
 }
 
-@media (max-width: 600px) {
-    .track-form {
+/* التجاوب مع الشاشات المختلفة */
+@media (max-width: 768px) {
+    .track-order-container {
+        padding: 20px;
+        margin: 15px auto;
+    }
+    .track-header h1 {
+        font-size: 1.8rem;
+    }
+    .contact-card {
         flex-direction: column;
-        gap: 10px;
+        text-align: center;
     }
-    .btn-green, .btn-blue {
+    .contact-icon {
+        margin-left: 0;
+        margin-bottom: 15px;
+    }
+    .contact-content {
+        margin-bottom: 15px;
+    }
+    .btn {
         width: 100%;
-        justify-content: center;
-    }
-    .search-section,
-    .help-section {
-        padding: 12px 4px;
-    }
-    header h1 {
-        font-size: 1.2rem;
     }
 }
 
-/* Animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.container {
-    animation: fadeIn 0.5s ease-out;
+@media (max-width: 480px) {
+    .help-list li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .help-number {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+    .example-box {
+        flex-direction: column;
+        text-align: center;
+    }
+    .example-box i {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
 }

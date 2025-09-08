@@ -1,8 +1,8 @@
 /* Base RTL and font */
 body {
     direction: rtl;
-    background: #f8f9fa;
-    color: #222;
+    background: #f4f6fa;
+    color: #14375A;
     font-family: 'Cairo', 'Tahoma', Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -14,20 +14,20 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Cairo', 'Tahoma', Arial, sans-serif;
 }
 
 body {
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: #f4f6fa;
+    color: #14375A;
     line-height: 1.6;
 }
 
 /* شريط التنقل */
 .navbar {
     background: #fff;
-    border-bottom: 1px solid #eee;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    border-bottom: 1px solid #e3e6ee;
+    box-shadow: 0 2px 8px rgba(20,55,90,0.03);
     padding: 0;
 }
 
@@ -37,20 +37,27 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 60px;
+    height: 70px;
 }
 
 .nav-logo {
     display: flex;
     align-items: center;
     font-size: 1.2rem;
-    color: #4CAF50;
+    color: #14375A;
     font-weight: bold;
     gap: 8px;
 }
 
+/* 🔹 لوجو الهيدر */
+.nav-logo img {
+    height: 70px;
+    width: auto;
+}
+
 .nav-logo i {
     font-size: 1.5rem;
+    color: #E94B35;
 }
 
 .nav-menu {
@@ -62,7 +69,7 @@ body {
 }
 
 .nav-link {
-    color: #222;
+    color: #14375A;
     text-decoration: none;
     font-size: 1rem;
     padding: 4px 0;
@@ -73,7 +80,7 @@ body {
 
 .nav-link.active,
 .nav-link:hover {
-    color: #4CAF50;
+    color: #E94B35;
     font-weight: bold;
 }
 
@@ -84,13 +91,13 @@ body {
     right: 0;
     width: 100%;
     height: 3px;
-    background: #4CAF50;
+    background: #E94B35;
     border-radius: 2px;
 }
 
 /* قسم الهيرو */
 .hero {
-    background: #fff;
+    background: #eaf0f6;
     padding: 48px 0 24px 0;
     text-align: center;
 }
@@ -98,13 +105,13 @@ body {
 .hero h1 {
     font-size: 2.2rem;
     font-weight: bold;
-    color: #222;
+    color: #14375A;
     margin-bottom: 12px;
 }
 
 .hero p {
     font-size: 1.15rem;
-    color: #666;
+    color: #E94B35;
     margin-bottom: 0;
 }
 
@@ -133,13 +140,13 @@ body {
 .contact-info {
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    box-shadow: 0 2px 10px rgba(20,55,90,0.07);
     padding: 28px 20px;
     margin-bottom: 24px;
 }
 
 .contact-info h2 {
-    color: #222;
+    color: #14375A;
     font-size: 1.3rem;
     font-weight: 700;
     margin-bottom: 18px;
@@ -150,7 +157,7 @@ body {
     align-items: flex-start;
     gap: 15px;
     padding: 18px 0;
-    border-bottom: 1px solid #f1f1f1;
+    border-bottom: 1px solid #e3e6ee;
 }
 
 .info-card:last-child {
@@ -160,8 +167,8 @@ body {
 .info-icon {
     width: 40px;
     height: 40px;
-    background: #e8f5e9;
-    color: #4CAF50;
+    background: #d0e4f5;
+    color: #14375A;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -171,20 +178,20 @@ body {
 }
 
 .info-content h3 {
-    color: #222;
+    color: #14375A;
     margin-bottom: 4px;
     font-size: 1rem;
     font-weight: bold;
 }
 
 .info-content p {
-    color: #666;
+    color: #555;
     margin-bottom: 2px;
     font-size: 0.98rem;
 }
 
 .highlight {
-    color: #4CAF50;
+    color: #E94B35;
     font-weight: bold;
     font-size: 1.05rem;
 }
@@ -196,7 +203,7 @@ body {
 
 .quick-links h3 {
     font-size: 1.05rem;
-    color: #222;
+    color: #14375A;
     margin-bottom: 10px;
     font-weight: bold;
 }
@@ -210,8 +217,8 @@ body {
 .social-icon {
     width: 36px;
     height: 36px;
-    background: #f8f9fa;
-    color: #4CAF50;
+    background: #eaf0f6;
+    color: #14375A;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -222,7 +229,7 @@ body {
 }
 
 .social-icon:hover {
-    background: #4CAF50;
+    background: #E94B35;
     color: #fff;
 }
 
@@ -234,8 +241,8 @@ body {
 
 .btn-outline {
     background: transparent;
-    color: #4CAF50;
-    border: 2px solid #4CAF50;
+    color: #14375A;
+    border: 2px solid #E94B35;
     border-radius: 8px;
     padding: 8px 18px;
     font-size: 1rem;
@@ -248,7 +255,7 @@ body {
 }
 
 .btn-outline:hover {
-    background: #4CAF50;
+    background: #E94B35;
     color: #fff;
 }
 
@@ -256,13 +263,13 @@ body {
 .contact-form {
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    box-shadow: 0 2px 10px rgba(20,55,90,0.07);
     padding: 28px 20px;
     margin-bottom: 24px;
 }
 
 .contact-form-section h2 {
-    color: #222;
+    color: #14375A;
     font-size: 1.3rem;
     font-weight: 700;
     margin-bottom: 18px;
@@ -277,7 +284,7 @@ body {
 .form-group label {
     display: block;
     margin-bottom: 6px;
-    color: #222;
+    color: #14375A;
     font-weight: 500;
     font-size: 1rem;
 }
@@ -286,24 +293,24 @@ body {
 .form-group textarea {
     width: 100%;
     padding: 12px;
-    border: 1.5px solid #e0e0e0;
+    border: 1.5px solid #d0e4f5;
     border-radius: 8px;
     font-size: 1rem;
-    background: #f8f9fa;
-    color: #222;
+    background: #eaf0f6;
+    color: #14375A;
     transition: border-color 0.2s;
     font-family: inherit;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-    border-color: #4CAF50;
+    border-color: #E94B35;
     background: #fff;
     outline: none;
 }
 
 .btn-green {
-    background: #4CAF50;
+    background: #14375A;
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -318,21 +325,21 @@ body {
 }
 
 .btn-green:hover {
-    background: #388e3c;
-    box-shadow: 0 4px 12px rgba(76,175,80,0.12);
+    background: #E94B35;
+    box-shadow: 0 4px 12px rgba(233,75,53,0.12);
 }
 
 /* الأسئلة الشائعة */
 .faq-section {
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    box-shadow: 0 2px 10px rgba(20,55,90,0.07);
     padding: 28px 20px;
     margin-bottom: 32px;
 }
 
 .faq-section h2 {
-    color: #222;
+    color: #14375A;
     font-size: 1.3rem;
     font-weight: 700;
     margin-bottom: 18px;
@@ -351,9 +358,9 @@ body {
 }
 
 .faq {
-    background: #f8f9fa;
+    background: #eaf0f6;
     border-radius: 10px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    box-shadow: 0 1px 4px rgba(20,55,90,0.04);
     margin-bottom: 0;
     overflow: hidden;
     transition: box-shadow 0.2s;
@@ -363,21 +370,22 @@ body {
     padding: 16px 18px;
     cursor: pointer;
     font-weight: bold;
-    color: #222;
+    color: #14375A;
     font-size: 1rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #d0e4f5;
     transition: background 0.2s;
 }
 
 .faq-question:hover {
-    background: #e8f5e9;
+    background: #E94B35;
+    color: #fff;
 }
 
 .faq-answer {
     padding: 0 18px;
     max-height: 0;
     overflow: hidden;
-    color: #666;
+    color: #555;
     font-size: 0.98rem;
     transition: max-height 0.3s ease, padding 0.3s ease;
 }
@@ -389,7 +397,7 @@ body {
 
 /* الفوتر */
 .footer {
-    background: #222;
+    background: #14375A;
     color: #fff;
     padding: 24px 0;
     text-align: center;
@@ -400,6 +408,14 @@ body {
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
+}
+
+/* 🔹 لوجو الفوتر */
+.footer-logo {
+    height: 60px;
+    width: auto;
+    display: block;
+    margin: 10px auto;
 }
 
 /* التصميم المتجاوب */
@@ -425,5 +441,13 @@ body {
     }
     .hero p {
         font-size: 1rem;
+    }
+
+    /* 🔹 لوجو أصغر على الموبايل */
+    .nav-logo img {
+        height: 50px;
+    }
+    .footer-logo {
+        height: 40px;
     }
 }

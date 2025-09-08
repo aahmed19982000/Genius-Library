@@ -2,8 +2,8 @@
 body {
     direction: rtl;
     font-family: 'Cairo', 'Tajawal', Arial, sans-serif;
-    background: #fff;
-    color: #222;
+    background: #f4f6fa; /* رمادي فاتح قريب من خلفية اللوجو */
+    color: #14375A; /* أزرق داكن من اللوجو */
     margin: 0;
     padding: 0;
 }
@@ -18,8 +18,8 @@ body {
 /* Navbar */
 .navbar {
     background: #fff;
-    border-bottom: 1px solid #eee;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    border-bottom: 1px solid #e3e6ee;
+    box-shadow: 0 2px 8px rgba(20,55,90,0.03);
     padding: 0;
 }
 
@@ -34,13 +34,14 @@ body {
     display: flex;
     align-items: center;
     font-size: 1.2rem;
-    color: #198754;
+    color: #14375A;
     font-weight: bold;
     gap: 8px;
 }
 
 .nav-logo i {
     font-size: 1.5rem;
+    color: #E94B35; /* برتقالي */
 }
 
 .nav-menu {
@@ -52,7 +53,7 @@ body {
 }
 
 .nav-menu li a {
-    color: #222;
+    color: #14375A;
     text-decoration: none;
     font-size: 1rem;
     padding: 4px 0;
@@ -61,13 +62,13 @@ body {
 
 .nav-menu li a.active,
 .nav-menu li a:hover {
-    color: #198754;
+    color: #E94B35;
     font-weight: bold;
 }
 
 /* Hero Section */
 .hero {
-    background: #f8f9fa;
+    background: #eaf0f6; /* رمادي أزرق فاتح */
     padding: 64px 0 32px 0;
     text-align: center;
 }
@@ -75,14 +76,16 @@ body {
 .hero h1 {
     font-size: 2.7rem;
     font-weight: bold;
-    color: #222;
+    color: #14375A;
     margin-bottom: 18px;
+    letter-spacing: 1px;
 }
 
 .hero p {
     font-size: 1.2rem;
-    color: #555;
+    color: #E94B35;
     margin-bottom: 32px;
+    font-weight: 500;
 }
 
 .btn {
@@ -104,7 +107,8 @@ body {
 }
 
 .btn-green:hover {
-    background: #157347;
+    background: #E94B35;
+    color: #fff;
 }
 
 /* Services Section */
@@ -116,10 +120,11 @@ body {
 .section-title {
     text-align: center;
     font-size: 2rem;
-    color: #222;
+    color: #14375A;
     font-weight: bold;
     margin-bottom: 36px;
     position: relative;
+    letter-spacing: 1px;
 }
 
 .section-title::after {
@@ -127,7 +132,7 @@ body {
     display: block;
     width: 80px;
     height: 3px;
-    background: #198754;
+    background: #E94B35;
     margin: 16px auto 0 auto;
     border-radius: 2px;
 }
@@ -140,41 +145,41 @@ body {
 
 .service-card {
     background: #fff;
-    border: 1px solid #eee;
+    border: 1px solid #e3e6ee;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    box-shadow: 0 2px 8px rgba(20,55,90,0.04);
     text-align: center;
     padding: 32px 18px 24px 18px;
     transition: box-shadow 0.2s, transform 0.2s;
 }
 
 .service-card:hover {
-    box-shadow: 0 6px 24px rgba(25,135,84,0.10);
+    box-shadow: 0 6px 24px rgba(233,75,53,0.10);
     transform: translateY(-4px);
 }
 
 .service-icon {
     font-size: 2.7rem;
-    color: #198754;
+    color: #14375A;
     margin-bottom: 18px;
 }
 
 .service-card h3 {
     font-size: 1.2rem;
-    color: #222;
+    color: #E94B35;
     margin-bottom: 10px;
     font-weight: bold;
 }
 
 .service-card p {
-    color: #555;
+    color: #14375A;
     font-size: 1rem;
     margin: 0;
 }
 
 /* Upload Section */
 .upload-section {
-    background: #f8f9fa;
+    background: #eaf0f6;
     padding: 40px 0;
 }
 
@@ -189,7 +194,7 @@ body {
 .upload-box {
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(25,135,84,0.07);
+    box-shadow: 0 2px 8px rgba(233,75,53,0.07);
     padding: 32px 24px;
     text-align: center;
     flex: 1 1 340px;
@@ -199,19 +204,19 @@ body {
 
 .upload-icon {
     font-size: 3.5rem;
-    color: #198754;
+    color: #14375A;
     margin-bottom: 18px;
 }
 
 .upload-box h2 {
     font-size: 1.4rem;
-    color: #222;
+    color: #E94B35;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
 .upload-box p {
-    color: #555;
+    color: #14375A;
     font-size: 1rem;
     margin-bottom: 24px;
 }
@@ -219,7 +224,7 @@ body {
 .why-choose {
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(25,135,84,0.07);
+    box-shadow: 0 2px 8px rgba(233,75,53,0.07);
     padding: 32px 24px;
     flex: 1 1 340px;
     min-width: 280px;
@@ -228,7 +233,7 @@ body {
 
 .why-choose h3 {
     font-size: 1.2rem;
-    color: #222;
+    color: #14375A;
     font-weight: bold;
     margin-bottom: 18px;
 }
@@ -241,7 +246,7 @@ body {
 
 .why-choose li {
     font-size: 1rem;
-    color: #222;
+    color: #E94B35;
     margin-bottom: 14px;
     display: flex;
     align-items: center;
@@ -249,13 +254,13 @@ body {
 }
 
 .why-choose li i {
-    color: #198754;
+    color: #14375A;
     font-size: 1.2rem;
 }
 
 /* Footer */
 .footer {
-    background: #222;
+    background: #14375A;
     color: #fff;
     padding: 32px 0 0 0;
     margin-top: 32px;
@@ -276,7 +281,7 @@ body {
 
 .footer-brand i {
     font-size: 1.5rem;
-    color: #198754;
+    color: #E94B35;
     margin-left: 8px;
 }
 
@@ -327,11 +332,11 @@ body {
 }
 
 .footer-links a:hover {
-    color: #198754;
+    color: #E94B35;
 }
 
 .footer-contact i {
-    color: #198754;
+    color: #E94B35;
     margin-left: 6px;
     font-size: 1rem;
 }
@@ -341,7 +346,7 @@ body {
     padding: 18px 0 8px 0;
     color: #bbb;
     font-size: 0.95rem;
-    border-top: 1px solid #333;
+    border-top: 1px solid #E94B35;
     margin-top: 24px;
 }
 

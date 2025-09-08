@@ -1,7 +1,7 @@
 /* ===== Footer Styling ===== */
 .site-footer {
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: #f4f6fa;
+    color: #14375A;
     padding: 40px 20px 20px;
     font-family: "Cairo", sans-serif;
 }
@@ -27,7 +27,15 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #222;
+    color: #14375A;
+}
+
+/* 🔹 حجم اللوجو في الفوتر */
+.footer-logo {
+    width: 120px;       /* العرض */
+    height: auto;       /* الارتفاع تلقائي */
+    max-height: 60px;   /* أقصى ارتفاع */
+    object-fit: contain; /* الحفاظ على تناسق الصورة */
 }
 
 .footer-desc {
@@ -48,12 +56,12 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #444;
+    color: #14375A;
     font-size: 14px;
 }
 
 .contact-list i {
-    color: #009879;
+    color: #00B6E6;
     font-size: 15px;
 }
 
@@ -69,22 +77,42 @@
 }
 
 .footer-links a {
-    color: #444;
+    color: #14375A;
     text-decoration: none;
     font-size: 14px;
     transition: color 0.3s;
 }
 
 .footer-links a:hover {
-    color: #009879;
+    color: #E94B35;
 }
 
 /* الحقوق */
 .footer-bottom {
     text-align: center;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #00B6E6;
     margin-top: 25px;
     padding-top: 12px;
     font-size: 13px;
-    color: #777;
+    color: #14375A;
+}
+
+/* =====================
+   Responsive Design
+===================== */
+@media (max-width: 768px) {
+    .footer-main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-col {
+        text-align: center;
+    }
+
+    /* 🔹 حجم أصغر للوجو على الموبايل */
+    .footer-logo {
+        width: 90px;
+        max-height: 50px;
+    }
 }
