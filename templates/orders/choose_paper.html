@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/choose_paper.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="upload-section">
+    <div class="upload-container">
+        <div class="upload-icon"><i class="fas fa-file-alt"></i></div>
+        <h2 class="upload-title">
+            <i class="fas fa-file-upload" style="color:#E94B35;margin-left:8px;"></i>
+            اختيار نوع الورق
+        </h2>
+        <p class="upload-desc">يرجى اختيار نوع الورق المناسب لطباعة ملفك.</p>
+        <div class="file-info" style="margin-bottom:18px;color:#14375A;font-size:1.05rem;">
+            <strong>اسم الملف:</strong> {{ upload_file }}
+        </div>
+        <form method="post" class="upload-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="type_papers">اختر نوع الورق:</label>
+                <select name="type_papers" id="type_papers" required>
+                    <option value="A4">A4</option>
+                    <option value="A3">A3</option>
+                    <option value="Glossy">ورق لامع</option>
+                    <option value="Matte">ورق مطفي</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quantity">الكمية المطلوبة:</label>
+                <input type="number" name="quantity" id="quantity" min="1" required placeholder="أدخل الكمية" style="width:100%;padding:12px;border:1.5px solid #e3e6ee;border-radius:8px;background:#f4f6fa;color:#14375A;font-size:1rem;">
+            </div>
+            <div class="form-group">
+                <label for="notes">ملاحظات إضافية:</label>
+                <textarea name="notes" id="notes" rows="3" placeholder="اكتب أي ملاحظات أو تفاصيل إضافية هنا" style="width:100%;padding:12px;border:1.5px solid #e3e6ee;border-radius:8px;background:#f4f6fa;color:#14375A;font-size:1rem;"></textarea>
+            </div>
+            <button type="submit" class="btn-green"><i class="fas fa-check"></i> تأكيد النوع</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

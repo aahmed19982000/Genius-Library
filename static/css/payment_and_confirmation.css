@@ -1,0 +1,135 @@
+body {
+    direction: rtl;
+    background: #f4f6fa;
+    color: #14375A;
+    font-family: 'Cairo', 'Tajawal', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.confirm-section {
+    background: #eaf0f6;
+    min-height: 100vh;
+    padding: 60px 0;
+}
+
+.confirm-container {
+    max-width: 550px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(20,55,90,0.07);
+    padding: 40px 32px;
+    text-align: center;
+}
+
+.confirm-title {
+    font-size: 2rem;
+    color: #14375A;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.confirm-icon {
+    font-size: 3rem;
+    color: #E94B35;
+    margin-bottom: 18px;
+}
+
+.confirm-desc {
+    color: #14375A;
+    font-size: 1.1rem;
+    margin-bottom: 28px;
+}
+
+.order-summary {
+    background: #f4f6fa;
+    border-radius: 10px;
+    padding: 18px 16px;
+    margin-bottom: 28px;
+    text-align: right;
+    box-shadow: 0 1px 4px rgba(20,55,90,0.04);
+}
+
+.order-summary h3 {
+    color: #E94B35;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+.order-summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.order-summary li {
+    color: #14375A;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.confirm-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: stretch;
+}
+
+.form-group label {
+    color: #14375A;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+    text-align: right;
+}
+
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    margin-top: 8px;
+}
+
+.payment-options label {
+    font-size: 1rem;
+    color: #14375A;
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    accent-color: #E94B35;
+    margin-left: 8px;
+}
+
+.btn-green {
+    background: #198754;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 13px 28px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-green:hover {
+    background: #E94B35;
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .confirm-container {
+        padding: 24px 8px;
+    }
+    .confirm-title {
+        font-size: 1.3rem;
+    }
+}

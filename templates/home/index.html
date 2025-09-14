@@ -1,22 +1,43 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block meta_title %}الرئيسية - مكتبة العبقري | طباعة وتصوير احترافية{% endblock %}
-{% block meta_description %}خدمات طباعة وتصوير بجودة عالية مع توصيل سريع للمنازل في جميع أنحاء المدينة. ارفع ملفاتك واحصل على عرض سعر فوري.{% endblock %}
-{% block meta_keywords %}طباعة, تصوير, توصيل, مستندات, مكتبة العبقري{% endblock %}
-{% block meta_author %}مكتبة العبقري - احمد ابراهيم{% endblock %}
+{% block head %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-{% block og_title %}الرئيسية - مكتبة العبقري | طباعة وتصوير احترافية{% endblock %}
-{% block og_description %}خدمات طباعة وتصوير بجودة عالية مع توصيل سريع للمنازل في جميع أنحاء المدينة. ارفع ملفاتك واحصل على عرض سعر فوري.{% endblock %}
-{% block og_url %}https://www.elgeniuslibrary.com/{% endblock %}
-{% block og_image %}https://www.elgeniuslibrary.com/static/images/logo.png{% endblock %}
+    <!-- Dynamic Title -->
+    <title>{% block meta_title %}الرئيسية - مكتبة العبقري | طباعة وتصوير احترافية{% endblock %}</title>
 
-{% block twitter_title %}الرئيسية - مكتبة العبقري | طباعة وتصوير احترافية{% endblock %}
-{% block twitter_description %}خدمات طباعة وتصوير بجودة عالية مع توصيل سريع للمنازل في جميع أنحاء المدينة. ارفع ملفاتك واحصل على عرض سعر فوري.{% endblock %}
-{% block twitter_image %}https://www.elgeniuslibrary.com/static/images/logo.png{% endblock %}
+    <!-- Dynamic Meta Description -->
+    <meta name="description" content="{% block meta_description %}خدمات طباعة وتصوير بجودة عالية مع توصيل سريع للمنازل في جميع أنحاء المدينة. ارفع ملفاتك واحصل على عرض سعر فوري.{% endblock %}">
 
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <!-- Dynamic Meta Keywords -->
+    <meta name="keywords" content="{% block meta_keywords %}طباعة, تصوير, توصيل, مستندات, مكتبة العبقري{% endblock %}">
+    <meta name="author" content="{% block meta_author %}مكتبة العبقري - احمد ابراهيم{% endblock %}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="{% block og_title %}الرئيسية - مكتبة العبقري | طباعة وتصوير احترافية{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}خدمات طباعة وتصوير بجودة عالية مع توصيل سريع للمنازل في جميع أنحاء المدينة. ارفع ملفاتك واحصل على عرض سعر فوري.{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{% block og_url %}https://www.elgeniuslibrary.com/{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}https://www.elgeniuslibrary.com/static/images/logo.png{% endblock %}">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}الرئيسية - مكتبة العبقري | طباعة وتصوير احترافية{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}خدمات طباعة وتصوير بجودة عالية مع توصيل سريع للمنازل في جميع أنحاء المدينة. ارفع ملفاتك واحصل على عرض سعر فوري.{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}https://www.elgeniuslibrary.com/static/images/logo.png{% endblock %}">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    {% block extra_css %}<link rel="stylesheet" href="{% static 'css/index.css' %}">{% endblock %}
+</head>
+<body>
 {% endblock %}
 
 {% block content %}
@@ -25,7 +46,7 @@
     <div class="container">
         <h1>اطبع مستنداتك بسهولة</h1>
         <p>خدمات طباعة وتصوير احترافية بجودة عالية مع إمكانية التوصيل للمنازل في جميع أنحاء المدينة</p>
-        <a href="#" class="btn btn-green">ابدأ الآن</a>
+        <a href="orders/upload/" class="btn btn-green">ابدأ الآن</a>
     </div>
 </section>
 
@@ -65,7 +86,7 @@
             <div class="upload-icon"><i class="fas fa-print"></i></div>
             <h2>ابدأ طلبك الآن</h2>
             <p>ارفع ملفاتك واحصل على عرض سعر فوري</p>
-            <a href="#" class="btn btn-green">رفع الملفات</a>
+            <a href="orders/upload" class="btn btn-green">رفع الملفات</a>
         </div>
         <div class="why-choose">
             <h3>لماذا تختار مكتبتنا؟</h3>

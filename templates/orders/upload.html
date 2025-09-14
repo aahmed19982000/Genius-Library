@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/upload.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- صفحة رفع الملفات بتنسيق الصفحة الرئيسية -->
+<section class="upload-section">
+    <div class="upload-container">
+        <div class="upload-icon"><i class="fas fa-upload"></i></div>
+        <h2 class="upload-title">رفع الملفات</h2>
+        <p class="upload-desc">اختر الملف المطلوب طباعته ثم اضغط زر رفع الملف</p>
+        <form method="post" enctype="multipart/form-data" class="upload-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_file">اختر الملف:</label>
+                {{ form.file }}
+            </div>
+            <button type="submit" class="btn-green"><i class="fas fa-upload"></i> رفع الملف</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

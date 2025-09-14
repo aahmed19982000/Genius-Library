@@ -1,7 +1,11 @@
-from django.contrib import admin
 from django.urls import path
-from views import  track_order 
+from . import views
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', track_order, name='track_order'),   
+    path('', views.track_order, name='track_order'), 
+    path('upload/', views.upload_file, name='upload_file'),
+    path('choose_paper/', views.choose_paper, name='choose_paper'),
+    path('delivery_details/', views.delivery_details , name='delivery_details'),
+    path('payment_and_confirmation/', views.payment_and_confirmation , name='payment_and_confirmation'),
+
 ]

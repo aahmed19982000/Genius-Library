@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/payment_and_confirmation.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="confirm-section">
+    <div class="confirm-container">
+        <div class="confirm-icon"><i class="fas fa-receipt"></i></div>
+        <h2 class="confirm-title">تأكيد البيانات والدفع</h2>
+        <p class="confirm-desc">يرجى مراجعة بيانات الطلب واختيار طريقة الدفع المناسبة.</p>
+        <div class="order-summary">
+            <h3>ملخص الطلب</h3>
+            <ul>
+                <li><strong>اسم الملف:</strong> {{ uploaded_file }}</li>
+                <li><strong>نوع الورق:</strong> {{ type_papers }}</li>
+                <li><strong>الكمية:</strong> {{ quantity }}</li>
+                <li><strong>العنوان:</strong> {{ address }}</li>
+                <li><strong>ملاحظات:</strong> {{ notes }}</li>
+            </ul>
+        </div>
+        <form method="post" class="confirm-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>اختر طريقة الدفع:</label>
+                <div class="payment-options">
+                    <label><input type="radio" name="payment_method" value="cash" required> نقداً عند الاستلام</label>
+                    <label><input type="radio" name="payment_method" value="bank"> تحويل بنكي</label>
+                </div>
+            </div>
+            <button type="submit" class="btn-green"><i class="fas fa-check-circle"></i> تأكيد الطلب والدفع</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
