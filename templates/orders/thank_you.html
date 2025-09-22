@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/thank_you.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="thank-section">
+    <div class="thank-container">
+        <div class="thank-icon"><i class="fas fa-check-circle"></i></div>
+        <h2 class="thank-title">شكراً لك!</h2>
+        <p class="thank-desc">تم إرسال طلبك بنجاح.<br>سوف نتواصل معك قريباً لتأكيد التفاصيل ومتابعة التنفيذ.</p>
+        <a href="/" class="btn-green">العودة للصفحة الرئيسية</a>
+    </div>
+</section>
+{% endblock %}

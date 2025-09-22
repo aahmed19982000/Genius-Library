@@ -1,0 +1,70 @@
+body {
+    direction: rtl;
+    background: #f4f6fa;
+    color: #14375A;
+    font-family: 'Cairo', 'Tajawal', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.thank-section {
+    background: #eaf0f6;
+    min-height: 100vh;
+    padding: 60px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.thank-container {
+    max-width: 400px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(20,55,90,0.07);
+    padding: 40px 32px;
+    text-align: center;
+}
+.thank-icon {
+    font-size: 3.5rem;
+    color: #198754;
+    margin-bottom: 18px;
+}
+.thank-title {
+    font-size: 2rem;
+    color: #14375A;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+.thank-desc {
+    color: #14375A;
+    font-size: 1.1rem;
+    margin-bottom: 28px;
+    line-height: 1.7;
+}
+.btn-green {
+    background: #198754;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 13px 28px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    display: inline-block;
+    text-decoration: none;
+}
+.btn-green:hover {
+    background: #E94B35;
+    color: #fff;
+}
+@media (max-width: 600px) {
+    .thank-container {
+        padding: 24px 8px;
+    }
+    .thank-title {
+        font-size: 1.3rem;
+    }
+    .thank-icon {
+        font-size: 2.2rem;
+    }
+}

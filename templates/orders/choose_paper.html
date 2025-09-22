@@ -11,32 +11,59 @@
         <div class="upload-icon"><i class="fas fa-file-alt"></i></div>
         <h2 class="upload-title">
             <i class="fas fa-file-upload" style="color:#E94B35;margin-left:8px;"></i>
-            اختيار نوع الورق
+            اختيار تفاصيل الطباعة
         </h2>
-        <p class="upload-desc">يرجى اختيار نوع الورق المناسب لطباعة ملفك.</p>
+        <p class="upload-desc">يرجى اختيار تفاصيل الطباعة المطلوبة لملفك.</p>
         <div class="file-info" style="margin-bottom:18px;color:#14375A;font-size:1.05rem;">
-            <strong>اسم الملف:</strong> {{ upload_file }}
+            <strong>اسم الملف:</strong> {{ request.session.uploaded_file }}
         </div>
         <form method="post" class="upload-form">
             {% csrf_token %}
             <div class="form-group">
-                <label for="type_papers">اختر نوع الورق:</label>
-                <select name="type_papers" id="type_papers" required>
-                    <option value="A4">A4</option>
-                    <option value="A3">A3</option>
-                    <option value="Glossy">ورق لامع</option>
-                    <option value="Matte">ورق مطفي</option>
+                <label for="paper_type">نوع الورق:</label>
+                <select name="paper_type" id="paper_type" required>
+                    {% for value, label in paper_type_choices %}
+                        <option value="{{ value }}">{{ label }}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="form-group">
-                <label for="quantity">الكمية المطلوبة:</label>
+                <label for="paper_size">حجم الورق:</label>
+                <select name="paper_size" id="paper_size" required>
+                    {% for value, label in paper_size_choices %}
+                        <option value="{{ value }}">{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="printing_color">لون الطباعة:</label>
+                <select name="printing_color" id="printing_color" required>
+                    {% for value, label in printing_color_choices %}
+                        <option value="{{ value }}">{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="printing_sides">الطباعة على وجه / وجهين:</label>
+                <select name="printing_sides" id="printing_sides" required>
+                    {% for value, label in printing_sides_choices %}
+                        <option value="{{ value }}">{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="number_of_sheets">عدد الأوراق:</label>
+                <input type="number" name="number_of_sheets" id="number_of_sheets" min="1" required placeholder="أدخل عدد الأوراق" style="width:100%;padding:12px;border:1.5px solid #e3e6ee;border-radius:8px;background:#f4f6fa;color:#14375A;font-size:1rem;">
+            </div>
+            <div class="form-group">
+                <label for="quantity">عدد النسخ:</label>
                 <input type="number" name="quantity" id="quantity" min="1" required placeholder="أدخل الكمية" style="width:100%;padding:12px;border:1.5px solid #e3e6ee;border-radius:8px;background:#f4f6fa;color:#14375A;font-size:1rem;">
             </div>
             <div class="form-group">
                 <label for="notes">ملاحظات إضافية:</label>
                 <textarea name="notes" id="notes" rows="3" placeholder="اكتب أي ملاحظات أو تفاصيل إضافية هنا" style="width:100%;padding:12px;border:1.5px solid #e3e6ee;border-radius:8px;background:#f4f6fa;color:#14375A;font-size:1rem;"></textarea>
             </div>
-            <button type="submit" class="btn-green"><i class="fas fa-check"></i> تأكيد النوع</button>
+            <button type="submit" class="btn-green"><i class="fas fa-check"></i> تأكيد التفاصيل</button>
         </form>
     </div>
 </section>

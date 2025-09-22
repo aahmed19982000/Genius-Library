@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'orders',
+    'bakend',
+    'category',
 ]
 
 MIDDLEWARE = [
@@ -76,12 +78,12 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'aj',        # اسم قاعدة البيانات اللي أنشأتها في MySQL
-        'USER': 'root',          # المستخدم (انت عملته root)
-        'PASSWORD': '1234',   # الباسورد اللي اخترته
-        'HOST': '127.0.0.1',     # أو localhost
-        'PORT': '3306',          # بورت MySQL الافتراضي
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mydb',        # اسم القاعدة اللي عملتها في pgAdmin
+        'USER': 'postgres',    # دلوقتي خليها postgres لحد ما نعمل مستخدم جديد
+        'PASSWORD': '1234',  # حط كلمة السر بتاعة postgres
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -115,6 +117,9 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
 # Static files (CSS, JavaScript, Images)

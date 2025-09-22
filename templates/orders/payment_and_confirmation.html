@@ -14,11 +14,14 @@
         <div class="order-summary">
             <h3>ملخص الطلب</h3>
             <ul>
-                <li><strong>اسم الملف:</strong> {{ uploaded_file }}</li>
-                <li><strong>نوع الورق:</strong> {{ type_papers }}</li>
-                <li><strong>الكمية:</strong> {{ quantity }}</li>
-                <li><strong>العنوان:</strong> {{ address }}</li>
-                <li><strong>ملاحظات:</strong> {{ notes }}</li>
+                <li><strong>اسم الملف:</strong> {{ request.session.uploaded_file }}</li>
+                <li><strong>نوع الورق:</strong> {{ request.session.paper_type }}</li>
+                <li><strong>حجم الورق:</strong> {{ request.session.paper_size }}</li>
+                <li><strong>لون الطباعة:</strong> {{ request.session.printing_color }}</li>
+                <li><strong>الطباعة على وجه/وجهين:</strong> {{ request.session.printing_sides }}</li>
+                <li><strong>عدد النسخ:</strong> {{ request.session.quantity }}</li>
+                <li><strong>العنوان:</strong> {{ request.session.delivery_address }}</li>
+                <li><strong>ملاحظات:</strong> {{ request.session.notes }}</li>
             </ul>
         </div>
         <form method="post" class="confirm-form">

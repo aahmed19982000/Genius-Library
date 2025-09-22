@@ -35,7 +35,9 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    {% include 'includes/header.html' %}
+    {% block header %}
+          {% include 'includes/header.html' %}
+    {% endblock %}
 
     <main>
         <div class="container">
@@ -44,8 +46,9 @@
             </div>
         </div>
     </main>
-
-    {% include 'includes/footer.html' %}
+    {% block footer %}
+          {% include 'includes/footer.html' %}
+    {% endblock %}
 
     <script src="{% static 'js/header.js' %}"></script>
     {% block extra_js %}{% endblock %}

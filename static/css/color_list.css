@@ -1,0 +1,45 @@
+.color-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    margin-bottom: 24px;
+}
+.color-table th, .color-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e3e6ee;
+    text-align: center;
+    font-size: 1rem;
+}
+.color-table th {
+    background: #f4f6fa;
+    color: #14375A;
+    font-weight: bold;
+}
+.btn-action {
+    background: #198754;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin: 0 4px;
+}
+.btn-action:hover {
+    background: #E94B35;
+}
+.add-btn {
+    background: #E94B35;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 18px;
+    display: inline-block;
+    text-decoration: none;
+}

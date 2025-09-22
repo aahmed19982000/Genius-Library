@@ -1,0 +1,114 @@
+.dashboard-section {
+    background: #eaf0f6;
+    min-height: 100vh;
+    padding: 60px 0;
+}
+.dashboard-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(20,55,90,0.07);
+    padding: 40px 32px;
+}
+.dashboard-title {
+    font-size: 2rem;
+    color: #14375A;
+    font-weight: bold;
+    margin-bottom: 28px;
+    text-align: center;
+}
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    margin-bottom: 24px;
+}
+.orders-table th, .orders-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e3e6ee;
+    text-align: center;
+    font-size: 1rem;
+}
+.orders-table th {
+    background: #f4f6fa;
+    color: #14375A;
+    font-weight: bold;
+}
+.orders-table tr:last-child td {
+    border-bottom: none;
+}
+.status {
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.98rem;
+}
+.status.pending { background: #fff3cd; color: #856404; }
+.status.inprogress { background: #eaf0f6; color: #14375A; }
+.status.done { background: #d4edda; color: #198754; }
+.btn-action {
+    background: #198754;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-action:hover {
+    background: #E94B35;
+}
+@media (max-width: 700px) {
+    .dashboard-container {
+        padding: 18px 4px;
+    }
+    .dashboard-title {
+        font-size: 1.2rem;
+    }
+    .orders-table th, .orders-table td {
+        font-size: 0.95rem;
+        padding: 8px 2px;
+    }
+    .orders-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        border-radius: 8px;
+    }
+    .orders-table thead, .orders-table tbody, .orders-table tr {
+        display: block;
+        width: 100%;
+    }
+    .orders-table tr {
+        margin-bottom: 8px;
+        background: #f4f6fa;
+        border-radius: 8px;
+        box-shadow: 0 1px 4px rgba(20,55,90,0.04);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .orders-table th, .orders-table td {
+        min-width: 120px;
+        flex: 1 1 120px;
+        text-align: right;
+        border-bottom: none;
+        border-right: 1px solid #e3e6ee;
+    }
+    .orders-table th:last-child, .orders-table td:last-child {
+        border-right: none;
+    }
+}
+@media (max-width: 450px) {
+    .dashboard-title {
+        font-size: 1rem;
+    }
+    .orders-table th, .orders-table td {
+        font-size: 0.85rem;
+        min-width: 90px;
+    }
+}

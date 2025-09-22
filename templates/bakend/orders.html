@@ -1,0 +1,113 @@
+{% extends "dashboard_base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/orders.css' %}">
+{% endblock %}
+
+{% block dashboard_content %}
+<section class="dashboard-section">
+    <div class="dashboard-container">
+        <h2 class="dashboard-title">
+            <i class="fas fa-list" style="color:#E94B35;margin-left:8px;"></i> جميع الطلبات
+        </h2>
+
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>اسم العميل</th>
+                    <th>اسم الملف</th>
+                    <th>نوع الورق</th>
+                    <th>حجم الورق</th>
+                    <th>لون الطباعة</th>
+                    <th>الطباعة على وجه/وجهين</th>
+                    <th>عدد النسخ</th>
+                    <th>العنوان</th>
+                    <th>الحالة</th>
+                    <th>تفاصيل</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.customer_name }}</td>
+                    <td>
+                        {% if order.file_name %}
+                            <a href="{{ order.file_name.url }}" target="_blank">{{ order.file_name.name|slice:"8:" }}</a>
+                        {% else %}
+                            لا يوجد ملف
+                        {% endif %}
+                    </td>
+                    <td>{{ order.get_paper_type_display }}</td>
+                    <td>{{ order.get_paper_size_display }}</td>
+                    <td>{{ order.get_printing_color_display }}</td>
+                    <td>{{ order.get_printing_sides_display }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>{{ order.address }}</td>
+                    <td>{{ order.get_status_display }}</td>
+                    <td>
+                        <button class="btn-details"
+                            onclick="showOrderDetails(this)"
+                            data-customer_name="{{ order.customer_name }}"
+                            data-file_name="{% if order.file_name %}{{ order.file_name.name|slice:'8:' }}{% else %}لا يوجد ملف{% endif %}"
+                            data-paper_type="{{ order.get_paper_type_display }}"
+                            data-paper_size="{{ order.get_paper_size_display }}"
+                            data-printing_color="{{ order.get_printing_color_display }}"
+                            data-printing_sides="{{ order.get_printing_sides_display }}"
+                            data-quantity="{{ order.quantity }}"
+                            data-address="{{ order.address }}"
+                            data-notes="{{ order.notes }}"
+                            data-status="{{ order.get_status_display }}"
+                            data-created_at="{{ order.created_at|date:'Y-m-d H:i' }}"
+                            data-updated_at="{{ order.updated_at|date:'Y-m-d H:i' }}"
+                        >عرض التفاصيل</button>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="10" style="text-align:center;">لا يوجد طلبات</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- نافذة منبثقة للتفاصيل -->
+        <div id="order-modal" class="order-modal">
+            <div class="order-modal-content">
+                <span class="close-modal" onclick="closeOrderDetails()">&times;</span>
+                <h3>تفاصيل الطلب</h3>
+                <div id="order-details-content"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+function showOrderDetails(btn) {
+    var fields = [
+        ['اسم العميل', btn.dataset.customer_name],
+        ['اسم الملف', btn.dataset.file_name],
+        ['نوع الورق', btn.dataset.paper_type],
+        ['حجم الورق', btn.dataset.paper_size],
+        ['لون الطباعة', btn.dataset.printing_color],
+        ['الطباعة على وجه/وجهين', btn.dataset.printing_sides],
+        ['عدد النسخ', btn.dataset.quantity],
+        ['العنوان', btn.dataset.address],
+        ['ملاحظات', btn.dataset.notes],
+        ['الحالة', btn.dataset.status],
+        ['تاريخ الطلب', btn.dataset.created_at],
+        ['تاريخ آخر تعديل', btn.dataset.updated_at],
+    ];
+    var html = '';
+    fields.forEach(function(f) {
+        html += '<p><strong>' + f[0] + ':</strong> ' + (f[1] ? f[1] : '-') + '</p>';
+    });
+    document.getElementById('order-details-content').innerHTML = html;
+    document.getElementById('order-modal').style.display = 'block';
+}
+
+function closeOrderDetails() {
+    document.getElementById('order-modal').style.display = 'none';
+}
+</script>
+{% endblock %}

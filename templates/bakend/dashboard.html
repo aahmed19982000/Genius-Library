@@ -1,0 +1,59 @@
+{% extends "dashboard_base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
+{% block dashboard_content %}
+<section class="dashboard-section">
+    <div class="dashboard-container">
+        <h2 class="dashboard-title">
+            <i class="fas fa-tachometer-alt" style="color:#E94B35;margin-left:8px;"></i> 
+            لوحة تحكم الإدارة
+        </h2>
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>اسم العميل</th>
+                    <th>اسم الملف</th>
+                    <th>نوع الورق</th>
+                    <th>الكمية</th>
+                    <th>العنوان</th>
+                    <th>الحالة</th>
+                    <th>إجراء</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>محمد أحمد</td>
+                    <td>ملف.pdf</td>
+                    <td>A4</td>
+                    <td>50</td>
+                    <td>الرياض - حي الملك فهد</td>
+                    <td><span class="status pending">قيد الانتظار</span></td>
+                    <td><button class="btn-action">بدء التنفيذ</button></td>
+                </tr>
+                <tr>
+                    <td>سارة علي</td>
+                    <td>عرض تقديمي.pptx</td>
+                    <td>ورق لامع</td>
+                    <td>20</td>
+                    <td>جدة - حي الشاطئ</td>
+                    <td><span class="status inprogress">جاري التنفيذ</span></td>
+                    <td><button class="btn-action">إنهاء الطلب</button></td>
+                </tr>
+                <tr>
+                    <td>خالد يوسف</td>
+                    <td>مستند.docx</td>
+                    <td>A3</td>
+                    <td>10</td>
+                    <td>الدمام - حي الخليج</td>
+                    <td><span class="status done">تم التنفيذ</span></td>
+                    <td><button class="btn-action" disabled>مكتمل</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

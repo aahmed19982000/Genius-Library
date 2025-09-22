@@ -1,0 +1,29 @@
+{% load static %}
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}مكتبة الطباعة{% endblock %}</title>
+
+    <!-- أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- ملف CSS للفوتر -->
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- الفوتر -->
+    <footer class="site-footer">
+        <div class="footer-main">
+    
+
+        <!-- حقوق النشر -->
+        <div class="footer-bottom">
+           <h6  © 2025مكتبة العبقري. تصميم وتطوير / احمد ابراهيم، جميع الحقوق محفوظة. ></h6>
+        </div>
+    </footer>
+
+</body>
+</html>

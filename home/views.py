@@ -7,3 +7,6 @@ def home_view(request):
 
 def contact(request):
     return render(request, 'home/contact.html')
+
+def dashboard(request):
+    return render(request,  'home/dashboard.html')
