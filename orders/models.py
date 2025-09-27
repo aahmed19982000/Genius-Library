@@ -1,4 +1,5 @@
 from django.db import models
+from category.models import PaperColor, PaperType, PaperSize
 
 class Order(models.Model):
     STATUS_CHOICES = [
@@ -6,23 +7,7 @@ class Order(models.Model):
         ('inprogress', 'جاري التنفيذ'),
         ('done', 'تم التنفيذ'),
     ]
-    COLOR_CHOICES = [
-        ('black and white', 'ابيض واسود'),
-        ('colored', 'الوان'),
-    ]
 
-    PAPER_SIZE=[
-        ('A4','A4'),
-        ('A3','A3'),
-        ('A2','A2'),
-]
-    
-    PAPER_TYPE=[
-        ('plain paper','عادي'),
-        ('glossy paper','لمع'),
-        ('sticky paper','لاصق'),
-        ('cardboard','مقوى'),
-        ]
     PAPER_SIDES=[
         ('one side','وجه واحد'),
         ('tow side','وجهين'),
@@ -32,9 +17,9 @@ class Order(models.Model):
 
     customer_name = models.CharField(max_length=100, verbose_name="اسم العميل")
     file_name = models.FileField(upload_to="uploads/", verbose_name="الملف") 
-    paper_type = models.CharField(max_length=50,choices=PAPER_TYPE,default='plain paper', verbose_name="نوع الورق")
-    paper_size = models.CharField(max_length=50, choices=PAPER_SIZE, default='A4', verbose_name="حجم الورق")
-    printing_color = models.CharField(max_length=20, choices=COLOR_CHOICES,default='black and white', verbose_name="لون الطباعة")
+    paper_type = models.ForeignKey(PaperType, on_delete=models.CASCADE, verbose_name="نوع الورق")
+    paper_size = models.ForeignKey(PaperSize, on_delete=models.CASCADE, verbose_name="حجم الورق")
+    printing_color =  models.ForeignKey(PaperColor, on_delete=models.CASCADE, verbose_name="لون الطباعة")
     printing_sides = models.CharField(max_length=20, choices=PAPER_SIDES,default='one side', verbose_name="الطباعة على وجه /وجهين")
     number_of_sheets= models.PositiveIntegerField(verbose_name="عدد الاوراق")
     quantity = models.PositiveIntegerField(verbose_name="عدد النسخ")

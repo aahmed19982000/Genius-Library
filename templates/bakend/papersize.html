@@ -1,0 +1,60 @@
+{% extends "dashboard_base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/color_list.css' %}">
+{% endblock %}
+
+{% block dashboard_content %}
+<section class="dashboard-section">
+    <div class="dashboard-container">
+        <h2 class="dashboard-title">
+            <i class="fas fa-palette" style="color:#E94B35;margin-left:8px;"></i> مقاسات الورق
+        </h2>
+
+        <!-- نموذج إضافة / تعديل -->
+        <div style="max-width:400px;margin:0 auto 24px auto;">
+            <h3 style="color:#14375A;text-align:center;font-size:1.1rem;">
+                {% if edit_size_obj %}تعديل مقاس ورق{% else %}إضافة مقاس جديد{% endif %}
+            </h3>
+            <form method="post" style="margin-bottom:18px;">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="add-btn">
+                    {% if edit_size_obj %}تحديث المقاس{% else %}إضافة المقاس{% endif %}
+                </button>
+                {% if edit_size_obj %}
+                    <a href="{% url 'papersize' %}" class="btn-action" style="background:#14375A;">إلغاء</a>
+                {% endif %}
+            </form>
+        </div>
+
+        <!-- جدول عرض المقاسات -->
+        <table class="color-table">
+            <thead>
+                <tr>
+                    <th>المقاس</th>
+                    <th>السعر</th>
+                    <th>إجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for size in sized %}
+                <tr>
+                    <td>{{ size.size }}</td>
+                    <td>{{ size.price }}</td>
+                    <td>
+                        <a href="?edit={{ size.id }}" class="btn-action">تعديل</a>
+                        <a href="?delete={{ size.id }}" class="btn-action" onclick="return confirm('هل أنت متأكد من حذف هذا المقاس؟');">حذف</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" style="text-align:center;">لا يوجد مقاسات</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

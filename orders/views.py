@@ -3,6 +3,7 @@ from django.core.files.storage import FileSystemStorage
 
 from .forms import UploadForm
 from .models import Order
+from category.models import PaperColor, PaperSize, PaperType
 # Create your views here.
 
 def track_order(request):
@@ -36,15 +37,15 @@ def choose_paper(request):
     upload_file = request.session.get('uploaded_file')
 
     # تمرير القوائم الديناميكية من الموديل
-    paper_type_choices = Order.PAPER_TYPE
-    paper_size_choices = Order.PAPER_SIZE
-    printing_color_choices = Order.COLOR_CHOICES
+    paper_type_choices = PaperType.objects.all()
+    paper_size_choices =PaperSize.objects.all()
+    printing_color_choices = PaperColor.objects.all()
     printing_sides_choices = Order.PAPER_SIDES
 
     # تحويل القيم إلى نص عربي
-    paper_type_dict = dict(Order.PAPER_TYPE)
-    paper_size_dict = dict(Order.PAPER_SIZE)
-    printing_color_dict = dict(Order.COLOR_CHOICES)
+    paper_type_dict = {pt.id: pt.paper_type for pt in PaperType.objects.all()}
+    paper_size_dict = {ps.id: ps.size for ps in PaperSize.objects.all()}
+    printing_color_dict = {pc.id: pc.color_paper for pc in PaperColor.objects.all()}
     printing_sides_dict = dict(Order.PAPER_SIDES)
 
     if request.method == 'POST':
@@ -79,24 +80,24 @@ def delivery_details(request):
 # وظيفة الدفع وتأكيد البيانات
 def payment_and_confirmation(request):
     if request.method == 'POST':
-        # اجمع البيانات من الـ session بالأسماء الصحيحة
+        # اجمع البيانات من الـ session
         file_name = request.session.get('uploaded_file')
-        paper_type = request.session.get('paper_type')
-        paper_size = request.session.get('paper_size')
-        printing_color = request.session.get('printing_color')
+        paper_type_id = request.session.get('paper_type')
+        paper_size_id = request.session.get('paper_size')
+        printing_color_id = request.session.get('printing_color')
         printing_sides = request.session.get('printing_sides')
         number_of_sheets = request.session.get('number_of_sheets')
         quantity = request.session.get('quantity')
         notes = request.session.get('notes')
         address = request.session.get('delivery_address')
 
-        # أنشئ الطلب في DB مرة واحدة فقط
+        # أنشئ الطلب في DB باستخدام IDs
         order = Order.objects.create(
             customer_name="زائر الموقع",
             file_name=file_name,
-            paper_type=paper_type,
-            paper_size=paper_size,
-            printing_color=printing_color,
+            paper_type=PaperType.objects.get(id=paper_type_id) if paper_type_id else None,
+            paper_size=PaperSize.objects.get(id=paper_size_id) if paper_size_id else None,
+            printing_color=PaperColor.objects.get(id=printing_color_id) if printing_color_id else None,
             printing_sides=printing_sides,
             number_of_sheets=number_of_sheets,
             quantity=quantity,
@@ -110,7 +111,25 @@ def payment_and_confirmation(request):
 
         return render(request, "orders/thank_you.html", {"order": order})
 
-    return render(request, "orders/payment_and_confirmation.html")
+    # لو الطلب GET (عرض ملخص الطلب قبل الدفع)
+    paper_type_id = request.session.get('paper_type')
+    paper_size_id = request.session.get('paper_size')
+    printing_color_id = request.session.get('printing_color')
+
+    context = {
+        "file_name": request.session.get('uploaded_file'),
+        "paper_type": PaperType.objects.get(id=paper_type_id).paper_type if paper_type_id else "",
+        "paper_size": PaperSize.objects.get(id=paper_size_id).size if paper_size_id else "",
+        "printing_color": PaperColor.objects.get(id=printing_color_id).color_paper if printing_color_id else "",
+        "printing_sides": request.session.get('printing_sides'),
+        "number_of_sheets": request.session.get('number_of_sheets'),
+        "quantity": request.session.get('quantity'),
+        "address": request.session.get('delivery_address'),
+        "notes": request.session.get('notes'),
+    }
+
+    return render(request, "orders/payment_and_confirmation.html", context)
+
 
 def thank_you(request):
     return render(request, 'orders/thank_you.html')

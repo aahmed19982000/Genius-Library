@@ -22,24 +22,24 @@
             <div class="form-group">
                 <label for="paper_type">نوع الورق:</label>
                 <select name="paper_type" id="paper_type" required>
-                    {% for value, label in paper_type_choices %}
-                        <option value="{{ value }}">{{ label }}</option>
+                    {% for pt in paper_type_choices %}
+                        <option value="{{ pt.id }}">{{ pt.paper_type }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="form-group">
                 <label for="paper_size">حجم الورق:</label>
                 <select name="paper_size" id="paper_size" required>
-                    {% for value, label in paper_size_choices %}
-                        <option value="{{ value }}">{{ label }}</option>
+                    {% for ps in paper_size_choices %}
+                        <option value="{{ ps.id }}">{{ ps.size }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="form-group">
                 <label for="printing_color">لون الطباعة:</label>
                 <select name="printing_color" id="printing_color" required>
-                    {% for value, label in printing_color_choices %}
-                        <option value="{{ value }}">{{ label }}</option>
+                    {% for pc in printing_color_choices %}
+                        <option value="{{ pc.id }}">{{ pc.color_paper }}</option>
                     {% endfor %}
                 </select>
             </div>

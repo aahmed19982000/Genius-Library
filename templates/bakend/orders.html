@@ -38,26 +38,26 @@
                             لا يوجد ملف
                         {% endif %}
                     </td>
-                    <td>{{ order.get_paper_type_display }}</td>
-                    <td>{{ order.get_paper_size_display }}</td>
-                    <td>{{ order.get_printing_color_display }}</td>
-                    <td>{{ order.get_printing_sides_display }}</td>
+                    <td>{{ order.paper_type }}</td>
+                    <td>{{ order.paper_size }}</td>
+                    <td>{{ order.printing_color }}</td>
+                    <td>{{ order.printing_sides }}</td>
                     <td>{{ order.quantity }}</td>
                     <td>{{ order.address }}</td>
-                    <td>{{ order.get_status_display }}</td>
+                    <td>{{ order.status }}</td>
                     <td>
                         <button class="btn-details"
                             onclick="showOrderDetails(this)"
                             data-customer_name="{{ order.customer_name }}"
                             data-file_name="{% if order.file_name %}{{ order.file_name.name|slice:'8:' }}{% else %}لا يوجد ملف{% endif %}"
-                            data-paper_type="{{ order.get_paper_type_display }}"
-                            data-paper_size="{{ order.get_paper_size_display }}"
-                            data-printing_color="{{ order.get_printing_color_display }}"
-                            data-printing_sides="{{ order.get_printing_sides_display }}"
+                            data-paper_type="{{ order.paper_type }}"
+                            data-paper_size="{{ order.paper_size }}"
+                            data-printing_color="{{ order.printing_color }}"
+                            data-printing_sides="{{ order.printing_sides }}"
                             data-quantity="{{ order.quantity }}"
                             data-address="{{ order.address }}"
                             data-notes="{{ order.notes }}"
-                            data-status="{{ order.get_status_display }}"
+                            data-status="{{ order.status }}"
                             data-created_at="{{ order.created_at|date:'Y-m-d H:i' }}"
                             data-updated_at="{{ order.updated_at|date:'Y-m-d H:i' }}"
                         >عرض التفاصيل</button>

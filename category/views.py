@@ -1,6 +1,6 @@
 from django.shortcuts import render ,redirect , get_object_or_404
-from .models import PaperColor , PaperType
-from .forms import PaperColorForm , PaperTypeForm
+from .models import PaperColor , PaperType , PaperSize
+from .forms import PaperColorForm , PaperTypeForm ,PaperSizeForm
 
 #وظيفة عرض كل الالوان 
 def paper_colors(request):
@@ -83,3 +83,47 @@ def paper_types(request):
         'form' : form,
         'edit_type_obj': edit_type_obj
     })
+
+#عرض كل المقسات والتعديل عليها 
+
+def papersize(request):
+    sizes = PaperSize.objects.all()  # كل المقاسات
+    size_id = request.GET.get('edit')
+    delete_id = request.GET.get('delete')
+
+    form = None
+    edit_size_obj = None
+
+    # حذف المقاس
+    if delete_id:
+        obj = get_object_or_404(PaperSize, id=delete_id)
+        obj.delete()
+        return redirect('papersize')
+
+    # تعديل المقاس
+    if size_id:
+        edit_size_obj = get_object_or_404(PaperSize, id=size_id)
+        if request.method == 'POST':
+            form = PaperSizeForm(request.POST, instance=edit_size_obj)
+            if form.is_valid():
+                form.save()
+                return redirect('papersize')
+        else:
+            form = PaperSizeForm(instance=edit_size_obj)
+
+    # إضافة مقاس جديد
+    else:
+        if request.method == 'POST':
+            form = PaperSizeForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('papersize')
+        else:
+            form = PaperSizeForm()
+
+    context = {
+        'sized': sizes,
+        'form': form,
+        'edit_size_obj': edit_size_obj,
+    }
+    return render(request, 'bakend/papersize.html', context)
