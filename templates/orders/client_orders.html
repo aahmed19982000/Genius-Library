@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/client_orders.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="orders-container">
+    <h2>طلباتي</h2>
+
+    {% if orders %}
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>رقم الطلب</th>
+                    <th>التاريخ</th>
+                    <th>الحالة</th>
+                    <th>الإجمالي</th>
+                    <th>تفاصيل</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>#{{ order.id }}</td>
+                    <td>{{ order.created_at|date:"Y-m-d H:i" }}</td>
+                    <td class="status {{ order.status }}">{{ order.status }}</td>
+                    <td>{{ order.total_cost }} ج.م</td>
+                    <td>
+                        <a href="{% url 'order_detail' order.id %}" class="btn btn-detail">عرض</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="no-orders">لا توجد طلبات حتى الآن.</p>
+    {% endif %}
+</div>
+{% endblock %}

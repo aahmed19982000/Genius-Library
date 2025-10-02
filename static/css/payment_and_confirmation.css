@@ -46,7 +46,7 @@ body {
     background: #f4f6fa;
     border-radius: 10px;
     padding: 18px 16px;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
     text-align: right;
     box-shadow: 0 1px 4px rgba(20,55,90,0.04);
 }
@@ -68,6 +68,19 @@ body {
     color: #14375A;
     font-size: 1rem;
     margin-bottom: 8px;
+}
+
+/* 🎯 صندوق التكلفة */
+.order-summary li:last-child {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #E94B35;
+    background: #fff3f2;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 15px;
+    box-shadow: 0 2px 6px rgba(233,75,53,0.15);
 }
 
 .confirm-form {
@@ -131,5 +144,9 @@ input[type="radio"] {
     }
     .confirm-title {
         font-size: 1.3rem;
+    }
+    .order-summary li:last-child {
+        font-size: 1.3rem;
+        padding: 10px;
     }
 }

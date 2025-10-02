@@ -1,0 +1,84 @@
+/* تنسيق القسم الأساسي */
+.register-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    background: #f5f7fa;
+    padding: 20px;
+}
+
+/* الحاوية */
+.register-container {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+/* العنوان */
+.form-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* كل مجموعة حقول */
+.form-group {
+    margin-bottom: 18px;
+}
+
+/* التسمية */
+.form-group label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #444;
+}
+
+/* الحقول */
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* الحقول عند التركيز */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #28a745;
+    outline: none;
+    box-shadow: 0 0 6px rgba(40, 167, 69, 0.3);
+}
+
+/* زرار التسجيل */
+.btn-green {
+    display: inline-block;
+    width: 100%;
+    padding: 14px;
+    background: #28a745;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+/* تأثير hover */
+.btn-green:hover {
+    background: #218838;
+}

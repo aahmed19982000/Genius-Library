@@ -1,5 +1,5 @@
 from django import forms
-from .models import Order
+from .models import Order , OrderChat
 
 
 class UploadForm(forms.Form):
@@ -18,3 +18,7 @@ class OrderForm(forms.ModelForm):
             'quantity',
             'address',
         ]
+class OrderChatForm(forms.ModelForm):
+    class Meta:
+        model = OrderChat
+        fields = ['message']

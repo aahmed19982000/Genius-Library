@@ -52,16 +52,33 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="number_of_sheets">عدد الأوراق:</label>
-                <input type="number" name="number_of_sheets" id="number_of_sheets" min="1" required placeholder="أدخل عدد الأوراق" style="width:100%;padding:12px;border:1.5px solid #e3e6ee;border-radius:8px;background:#f4f6fa;color:#14375A;font-size:1rem;">
+                 <label for="number_of_sheets">عدد الأوراق:</label>
+                 <input type="number" 
+                        name="number_of_sheets" 
+                        id="number_of_sheets" 
+                        min="1" 
+                        required 
+                        value="{{ default_sheets }}"
+                        style="width:100%;padding:12px;border:1.5px solid #e3e6ee;border-radius:8px;background:#f4f6fa;color:#14375A;font-size:1rem;">
             </div>
+
             <div class="form-group">
                 <label for="quantity">عدد النسخ:</label>
-                <input type="number" name="quantity" id="quantity" min="1" required placeholder="أدخل الكمية" style="width:100%;padding:12px;border:1.5px solid #e3e6ee;border-radius:8px;background:#f4f6fa;color:#14375A;font-size:1rem;">
+                <input type="number" 
+                       name="quantity" 
+                       id="quantity" 
+                       min="1" 
+                       required 
+                       placeholder="أدخل الكمية" 
+                       style="width:100%;padding:12px;border:1.5px solid #e3e6ee;border-radius:8px;background:#f4f6fa;color:#14375A;font-size:1rem;">
             </div>
             <div class="form-group">
                 <label for="notes">ملاحظات إضافية:</label>
-                <textarea name="notes" id="notes" rows="3" placeholder="اكتب أي ملاحظات أو تفاصيل إضافية هنا" style="width:100%;padding:12px;border:1.5px solid #e3e6ee;border-radius:8px;background:#f4f6fa;color:#14375A;font-size:1rem;"></textarea>
+                <textarea name="notes" 
+                          id="notes" 
+                          rows="3" 
+                          placeholder="اكتب أي ملاحظات أو تفاصيل إضافية هنا" 
+                          style="width:100%;padding:12px;border:1.5px solid #e3e6ee;border-radius:8px;background:#f4f6fa;color:#14375A;font-size:1rem;"></textarea>
             </div>
             <button type="submit" class="btn-green"><i class="fas fa-check"></i> تأكيد التفاصيل</button>
         </form>

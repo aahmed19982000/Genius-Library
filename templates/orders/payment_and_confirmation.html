@@ -23,6 +23,8 @@
                 <li><strong>عدد النسخ:</strong> {{ quantity }}</li>
                 <li><strong>العنوان:</strong> {{ address }}</li>
                 <li><strong>ملاحظات:</strong> {{ notes }}</li>
+                <li><strong>التكلفة :</strong> {{ total_cost|floatformat:2 }} جنيه </li>
+
             </ul>
         </div>
         <form method="post" class="confirm-form">

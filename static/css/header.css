@@ -2,7 +2,7 @@
 :root {
     --primary-color: #14375A; /* أزرق داكن من اللوجو */
     --secondary-color: #E94B35; /* برتقالي من اللوجو */
-    --accent-color: #00B6E6; /* أزرق فاتح من العدسات */
+    --accent-color: #00B6E6; /* أزرق فاتح */
     --light-color: #f4f6fa; /* رمادي فاتح */
     --dark-color: #14375A;
     --text-color: #14375A;
@@ -31,7 +31,7 @@ body {
     padding: 0 15px;
 }
 
-/* Header Styles */
+/* Header */
 header {
     background-color: #fff;
     box-shadow: var(--shadow);
@@ -47,23 +47,17 @@ header {
     padding: 1rem 0;
 }
 
-.logo a {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--primary-color);
-    text-decoration: none;
-}
-
-/* 🔹 ضبط حجم اللوجو */
+/* 🔹 اللوجو */
 .logo img {
     height: 80px;
     width: auto;
-    max-width: 100%;
 }
 
+/* 🔹 روابط الناف بار */
 .nav-links {
     display: flex;
     list-style: none;
+    margin-right: 2rem;
 }
 
 .nav-links li {
@@ -99,6 +93,46 @@ header {
     width: 100%;
 }
 
+/* 🔹 أزرار تسجيل الدخول وإنشاء الحساب */
+.auth-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-login,
+.btn-register {
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.btn-login {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-login:hover {
+    background: var(--primary-color);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.btn-register {
+    background: var(--secondary-color);
+    color: #fff;
+    border: none;
+}
+
+.btn-register:hover {
+    background: #c73c28;
+    transform: translateY(-2px);
+}
+
+/* 🔹 زر الهامبورجر */
 .hamburger {
     display: none;
     flex-direction: column;
@@ -113,12 +147,14 @@ header {
     transition: var(--transition);
 }
 
-/* Responsive Design */
+/* 🔹 Responsive Design */
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
     }
-    .nav-links {
+
+    .nav-links,
+    .auth-links {
         position: fixed;
         top: 70px;
         right: -100%;
@@ -131,66 +167,33 @@ header {
         padding-top: 2rem;
         transition: var(--transition);
         box-shadow: var(--shadow);
-        border-left: 2px solid var(--light-color);
     }
-    .nav-links.active {
+
+    .nav-links.active,
+    .auth-links.active {
         right: 0;
     }
+
     .nav-links li {
         margin: 1.5rem 0;
     }
-    /* 🔹 حجم أصغر للوجو على الموبايل */
+
+    /* 🔹 اللوجو على الموبايل */
     .logo img {
         height: 62px;
-        max-width: 100%;
+        width: 170px;
     }
-}
 
-/* Dropdown */
-.dropdown {
-    position: relative;
-}
+    /* أزرار الدخول والتسجيل على الموبايل */
+    .auth-links {
+        gap: 1.2rem;
+        margin-top: 2rem;
+    }
 
-.dropdown .dropbtn {
-    display: inline-block;
-    padding: 10px 15px;
-    color: var(--primary-color);
-    text-decoration: none;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #fff;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
-    z-index: 1;
-    right: 0; /* علشان يفتح يمين في RTL */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.dropdown-content li {
-    list-style: none;
-}
-
-.dropdown-content li a {
-    color: var(--primary-color);
-    padding: 10px 15px;
-    display: block;
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.dropdown-content li a:hover {
-    background-color: var(--secondary-color);
-    color: #fff;
-}
-
-/* Show dropdown on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-    opacity: 1;
-    visibility: visible;
+    .btn-login,
+    .btn-register {
+        width: 70%;
+        text-align: center;
+        padding: 0.8rem;
+    }
 }

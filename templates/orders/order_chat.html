@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/chat.css' %}">
+{% endblock %}
+
+{% block content %}
+<h2 class="chat-title">المحادثة الخاصة بالطلب: {{ order.customer_name }}</h2>
+
+<div class="chat-box">
+    {% for chat in chats %}
+        <div class="chat-message">
+            <strong class="chat-sender">{{ chat.sender.username }}:</strong> 
+            <span class="chat-text">{{ chat.message }}</span>
+            <div class="chat-time">{{ chat.created_at|date:"Y-m-d H:i" }}</div>
+        </div>
+    {% empty %}
+        <p class="no-messages">لا توجد رسائل بعد.</p>
+    {% endfor %}
+</div>
+
+<form method="post" class="chat-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="chat-button">إرسال</button>
+</form>
+{% endblock %}

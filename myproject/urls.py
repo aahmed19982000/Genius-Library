@@ -17,17 +17,25 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from home.views import home_view, contact, dashboard
+from orders.views import client_orders
+from clients.views import register , login_view
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name='home'),
     path('orders/', include('orders.urls')), 
     path('contact/', contact, name='contact'),
+    path('register/', register, name='register'),
+    path('login/', login_view, name='login'),
     path('dashboard/', dashboard, name='dashboard'),
     path('bakend/', include('bakend.urls')), 
     path('category/', include('category.urls')), 
+    path('clients/', include('clients.urls')),
+    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+    path('my_orders/', client_orders, name='my_orders' ),
 ]
 
 # توفير ملفات الميديا أثناء التطوير

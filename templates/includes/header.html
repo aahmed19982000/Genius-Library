@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}مكتبة الطباعة{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/header.css' %}">
-    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
     {% block extra_css %}{% endblock %}
 </head>
 <body>
@@ -14,15 +13,34 @@
     <header>
         <div class="container">
             <nav class="navbar">
+                <!-- اللوجو -->
                 <div class="logo">
                     <img src="{% static 'images/logo.png' %}" alt="لوجو المكتبة" class="logo">
                 </div>
+
+                <!-- الروابط -->
                 <ul class="nav-links">
                     <li><a href="{% url 'home' %}">الرئيسية</a></li>
-                    <li><a href="#">خدماتنا</a></li>
+                    <li><a href="{% url 'my_orders' %}">طلباتي</a></li>
                     <li><a href="{% url 'track_order' %}">تتبع الطلب</a></li>
                     <li><a href="{% url 'contact' %}">تواصل معنا</a></li>
                 </ul>
+
+                <!-- أزرار الدخول والتسجيل / تسجيل الخروج -->
+                <div class="auth-links">
+                    {% if user.is_authenticated %}
+                        <span>مرحباً، {{ user.get_full_name }}</span>
+                        <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-logout">تسجيل الخروج</button>
+                        </form>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn-login">تسجيل الدخول</a>
+                        <a href="{% url 'register' %}" class="btn-register">إنشاء حساب</a>
+                    {% endif %}
+                </div>
+
+                <!-- Hamburger -->
                 <div class="hamburger">
                     <span></span>
                     <span></span>
@@ -38,21 +56,24 @@
         {% endblock %}
     </main>
 
-
-
     <script src="{% static 'js/header.js' %}"></script>
     <script>
         // Hamburger menu toggle
         document.addEventListener('DOMContentLoaded', function() {
             var hamburger = document.querySelector('.hamburger');
             var navLinks = document.querySelector('.nav-links');
+            var authLinks = document.querySelector('.auth-links');
+
             hamburger.addEventListener('click', function() {
                 navLinks.classList.toggle('active');
+                authLinks.classList.toggle('active');
             });
-            // Close menu when clicking a link (optional for better UX)
-            navLinks.querySelectorAll('a').forEach(function(link) {
+
+            // Close menu when clicking a link
+            document.querySelectorAll('.nav-links a, .auth-links a').forEach(function(link) {
                 link.addEventListener('click', function() {
                     navLinks.classList.remove('active');
+                    authLinks.classList.remove('active');
                 });
             });
         });

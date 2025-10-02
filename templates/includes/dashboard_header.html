@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}مكتبة الطباعة{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard_header.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
     {% block extra_css %}{% endblock %}
 </head>
@@ -17,19 +17,36 @@
                 <div class="logo">
                     <img src="{% static 'images/logo.png' %}" alt="لوجو المكتبة" class="logo">
                 </div>
+
                 <ul class="nav-links">
                     <li><a href="{% url 'dashboard' %}">لوحة التحكم</a></li>
                     <li><a href="{% url 'messages' %}">رسائل العملاء</a></li>
                     <li><a href="{% url 'orders' %}">الطلبات</a></li>
                     <li class="dropdown">
-                       <a href="#" class="dropbtn">الاسعار ▾</a>
-                       <ul class="dropdown-content">
-                          <li><a href="{% url 'paper_colors' %}">سعر الورق حسب الون</a></li>
-                         <li><a href="{% url 'paper_types' %}">سعر الورق حسب النواع</a></li>
-                         <li><a href="{% url 'papersize' %}">سعر الورق حسب المقاس</a></li>
-                       </ul>
-                     </li>
+                        <a href="#" class="dropbtn">الاسعار ▾</a>
+                        <ul class="dropdown-content">
+                            <li><a href="{% url 'paper_colors' %}">سعر الورق حسب اللون</a></li>
+                            <li><a href="{% url 'paper_types' %}">سعر الورق حسب النوع</a></li>
+                            <li><a href="{% url 'papersize' %}">سعر الورق حسب المقاس</a></li>
+                        </ul>
+                    </li>
                 </ul>
+
+                <!-- أزرار تسجيل الدخول/التسجيل أو تسجيل الخروج -->
+                <div class="auth-links">
+                    {% if user.is_authenticated %}
+                        <span>مرحباً، {{ user.get_full_name }}</span>
+                        <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-logout">تسجيل الخروج</button>
+                        </form>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn-login">تسجيل الدخول</a>
+                        <a href="{% url 'register' %}" class="btn-register">إنشاء حساب</a>
+                    {% endif %}
+                </div>
+
+                <!-- Hamburger -->
                 <div class="hamburger">
                     <span></span>
                     <span></span>
@@ -45,21 +62,24 @@
         {% endblock %}
     </main>
 
-
-
     <script src="{% static 'js/header.js' %}"></script>
     <script>
         // Hamburger menu toggle
         document.addEventListener('DOMContentLoaded', function() {
             var hamburger = document.querySelector('.hamburger');
             var navLinks = document.querySelector('.nav-links');
+            var authLinks = document.querySelector('.auth-links');
+
             hamburger.addEventListener('click', function() {
                 navLinks.classList.toggle('active');
+                authLinks.classList.toggle('active');
             });
-            // Close menu when clicking a link (optional for better UX)
-            navLinks.querySelectorAll('a').forEach(function(link) {
+
+            // Close menu when clicking a link
+            document.querySelectorAll('.nav-links a, .auth-links a, .auth-links button').forEach(function(link) {
                 link.addEventListener('click', function() {
                     navLinks.classList.remove('active');
+                    authLinks.classList.remove('active');
                 });
             });
         });

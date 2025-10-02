@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/thank_you.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="thank-section">
+    <div class="thank-container">
+        <div class="thank-icon"><i class="fas fa-check-circle"></i></div>
+        <h2 class="thank-title">شكراً لك</h2>
+        <p class="thank-desc">
+            تم انشاء الحساب بنجاح.<br>
+            انت الآن عميل مكتبة العبقري وسنكون سعداء بخدمتك في أي وقت.<br>
+            وانت في بيتك دلوقتي تقدر تستمتع بكل خدمات مكتبة العبقري، وإحنا موجودين لمساعدتك في أي وقت.
+        </p>
+        <a href="/" class="btn-green">العودة للصفحة الرئيسية</a>
+    </div>
+</section>
+{% endblock %}

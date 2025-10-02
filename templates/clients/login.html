@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<style>
+    .error-message {
+        background: #ffe0e0;
+        border: 1px solid #ff6b6b;
+        padding: 10px;
+        border-radius: 8px;
+        text-align: center;
+        margin: 10px 0;
+        color: #b00020;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="login-section">
+    <div class="login-container">
+        <h2 class="form-title">تسجيل الدخول</h2>
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- hidden input عشان يحتفظ بالـ next -->
+            <input type="hidden" name="next" value="{{ next|default:'' }}">
+
+            <div class="form-group">
+                <label for="username">اسم المستخدم</label>
+                <input type="text" name="username" id="username" 
+                       value="{{ username|default:'' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">كلمة المرور</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+
+            {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <button type="submit" class="btn-green">تسجيل الدخول</button>
+        </form>
+
+        <div class="login-links">
+            <p>ليس لديك حساب؟ <a href="{% url 'register' %}">سجل هنا</a></p>
+            <p><a href="{% url 'password_reset' %}">هل نسيت كلمة المرور؟</a></p>
+        </div>
+    </div>
+</section>
+{% endblock %}

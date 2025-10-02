@@ -1,5 +1,8 @@
 from django.db import models
 from category.models import PaperColor, PaperType, PaperSize
+from django.contrib.auth.models import User
+from clients.models import Client
+from django.conf import settings  # لو هتستخدم نظام المستخدمين الافتراضي
 
 class Order(models.Model):
     STATUS_CHOICES = [
@@ -14,7 +17,7 @@ class Order(models.Model):
 
 ]
     
-
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name="orders")  
     customer_name = models.CharField(max_length=100, verbose_name="اسم العميل")
     file_name = models.FileField(upload_to="uploads/", verbose_name="الملف") 
     paper_type = models.ForeignKey(PaperType, on_delete=models.CASCADE, verbose_name="نوع الورق")
@@ -25,9 +28,21 @@ class Order(models.Model):
     quantity = models.PositiveIntegerField(verbose_name="عدد النسخ")
     address = models.CharField(max_length=255, verbose_name="العنوان")
     notes = models.TextField(null=True, blank=True)
+    total_cost = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="إجمالي التكلفة")
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending', verbose_name="الحالة")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="تاريخ الطلب")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="تاريخ آخر تعديل")
 
     def __str__(self):
         return f"{self.customer_name} - {self.file_name} ({self.status})"
+
+
+
+class OrderChat(models.Model):
+    order = models.ForeignKey("Order", on_delete=models.CASCADE, related_name="chats")  
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="sent_messages")  
+    message = models.TextField(verbose_name="الرسالة")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="تاريخ الإرسال")
+
+    def __str__(self):
+        return f"Message from {self.sender} - {self.order}"
