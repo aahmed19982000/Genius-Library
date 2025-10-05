@@ -21,4 +21,4 @@ class OrderForm(forms.ModelForm):
 class OrderChatForm(forms.ModelForm):
     class Meta:
         model = OrderChat
-        fields = ['message']
+        fields = ["message", "file"]

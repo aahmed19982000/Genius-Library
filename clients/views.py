@@ -39,7 +39,7 @@ def login_view(request):
             if user.user_type == 'admin':
                 return redirect("dashboard")
             else:  # client
-                return redirect("dashboard")
+                return redirect("my_orders")
 
         else:
             # لو فيه خطأ → رجّع الرسالة مع next

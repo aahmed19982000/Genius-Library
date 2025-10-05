@@ -1,6 +1,6 @@
 from django.shortcuts import render ,redirect , get_object_or_404
-from .models import PaperColor , PaperType , PaperSize
-from .forms import PaperColorForm , PaperTypeForm ,PaperSizeForm
+from .models import PaperColor , PaperType , PaperSize , Status
+from .forms import PaperColorForm , PaperTypeForm ,PaperSizeForm ,StatusForm
 
 #وظيفة عرض كل الالوان 
 def paper_colors(request):
@@ -121,9 +121,74 @@ def papersize(request):
         else:
             form = PaperSizeForm()
 
+
     context = {
         'sized': sizes,
         'form': form,
         'edit_size_obj': edit_size_obj,
     }
     return render(request, 'bakend/papersize.html', context)
+
+#وظيفة اضافة حالة وحذفها 
+def status(request):
+    status = Status.objects.all() 
+    status_id = request.GET.get('edit')
+    delete_id = request.GET.get('delete')
+
+    form = None
+    edit_status_obj = None
+#حذف الحالة 
+
+    if  delete_id:
+        obj = get_object_or_404(Status, id=delete_id)
+        obj.delete()
+        return redirect('status')
+    
+    #تعديل حالة 
+    if status_id :
+        edit_status_obj = get_object_or_404 (Status, id=status_id)
+        if request.method == 'POST':
+              form = StatusForm(request.POST, instance=edit_status_obj)
+              if form.is_valid():
+                form.save()
+                return redirect('status')
+        else:
+            form = StatusForm(instance=edit_status_obj)
+    else:
+        if request.method == 'POST':
+            form = StatusForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('status')
+        else:
+            form = StatusForm()
+
+
+
+
+    context = {
+        'status': status,
+        'form': form,
+        'edit_status_obj': edit_status_obj,}
+    
+    return render(request, 'bakend/status.html', context)
+
+
+
+
+
+
+
+
+#وظيقة حساب التكلفة 
+def calculate_cost(request):
+    if request.method == 'POST':
+        color_id = request.POST.get('color')
+        type_id = request.POST.get('type')
+        size_id = request.POST.get('size')
+        quantity = int(request.POST.get('quantity', 1))
+        number_of_sheets = int(request.POST.get('number_of_sheets', 1))
+        printing_sides = request.POST.get('printing_sides')
+
+        
+

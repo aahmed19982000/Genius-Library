@@ -8,41 +8,33 @@
 {% block dashboard_content %}
 <section class="dashboard-section">
     <div class="dashboard-container">
-        <h2 class="dashboard-title">
-            <i class="fas fa-palette" style="color:#E94B35;margin-left:8px;"></i> ألوان الورق
-        </h2>
-
-        <!-- نموذج إضافة / تعديل -->
+        <h2 class="dashboard-title"><i class="fas fa-palette" style="color:#E94B35;margin-left:8px;"></i> ألوان الورق</h2>
         <div style="max-width:400px;margin:0 auto 24px auto;">
-            <h3 style="color:#14375A;text-align:center;font-size:1.1rem;">
-                {% if edit_color_obj %}تعديل لون{% else %}إضافة لون جديد{% endif %}
-            </h3>
+            <h3 style="color:#14375A;text-align:center;font-size:1.1rem;">{% if edit_color_obj %}تعديل لون{% else %}إضافة لون جديد{% endif %}</h3>
             <form method="post" style="margin-bottom:18px;">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" class="add-btn">
-                    {% if edit_color_obj %}تحديث اللون{% else %}إضافة اللون{% endif %}
-                </button>
+                <button type="submit" class="add-btn">{% if edit_color_obj %}تحديث اللون{% else %}إضافة اللون{% endif %}</button>
                 {% if edit_color_obj %}
                     <a href="{% url 'paper_colors' %}" class="btn-action" style="background:#14375A;">إلغاء</a>
                 {% endif %}
             </form>
         </div>
-
-        <!-- جدول عرض الألوان -->
         <table class="color-table">
             <thead>
                 <tr>
                     <th>اسم اللون</th>
-                    <th>السعر</th>
+                    <th>كود اللون</th>
+                    <th>معاينة</th>
                     <th>إجراءات</th>
                 </tr>
             </thead>
             <tbody>
                 {% for color in colors %}
                 <tr>
-                    <td>{{ color.color_paper }}</td>
-                    <td>{{ color.price }}</td>
+                    <td>{{ color.name }}</td>
+                    <td>{{ color.code }}</td>
+                    <td><span style="display:inline-block;width:32px;height:32px;border-radius:6px;background:{{ color.code }};border:1px solid #e3e6ee;"></span></td>
                     <td>
                         <a href="?edit={{ color.id }}" class="btn-action">تعديل</a>
                         <a href="?delete={{ color.id }}" class="btn-action" onclick="return confirm('هل أنت متأكد من حذف اللون؟');">حذف</a>
@@ -50,7 +42,7 @@
                 </tr>
                 {% empty %}
                 <tr>
-                    <td colspan="3" style="text-align:center;">لا يوجد ألوان</td>
+                    <td colspan="4" style="text-align:center;">لا يوجد ألوان</td>
                 </tr>
                 {% endfor %}
             </tbody>

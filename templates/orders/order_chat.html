@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends base_template %}
 {% load static %}
 
 {% block extra_css %}
@@ -6,23 +6,51 @@
 {% endblock %}
 
 {% block content %}
-<h2 class="chat-title">المحادثة الخاصة بالطلب: {{ order.customer_name }}</h2>
 
-<div class="chat-box">
-    {% for chat in chats %}
-        <div class="chat-message">
-            <strong class="chat-sender">{{ chat.sender.username }}:</strong> 
-            <span class="chat-text">{{ chat.message }}</span>
-            <div class="chat-time">{{ chat.created_at|date:"Y-m-d H:i" }}</div>
+<div class="{% if request.user.is_staff %}dashboard-container{% else %}chat-container{% endif %}">
+    <h2 class="chat-title">
+        {% if request.user.is_staff %}
+            <i class="fas fa-comments" style="color:#E94B35;margin-left:8px;"></i>
+            محادثة الطلب رقم {{ order.id }} ({{ order.customer_name }})
+        {% else %}
+            المحادثة الخاصة بالطلب: {{ order.customer_name }}
+        {% endif %}
+    </h2>
+
+    <div class="chat-box">
+        {% for chat in chats %}
+            <div class="chat-message {% if chat.sender == request.user %}chat-outgoing{% else %}chat-incoming{% endif %}">
+                <div class="chat-header">
+                    <strong class="chat-sender">{{ chat.sender.username }}</strong>
+                    <span class="chat-time">{{ chat.created_at|date:"Y-m-d H:i" }}</span>
+                </div>
+                <div class="chat-text">
+                    {{ chat.message }}
+                    {% if chat.file %}
+                        <div class="chat-file">
+                            {% if chat.file.url|lower|slice:"-4:" in ".jpg,.png,.gif,.jpeg" %}
+                                <img src="{{ chat.file.url }}" alt="صورة مرفقة" class="chat-image">
+                            {% else %}
+                                <a href="{{ chat.file.url }}" target="_blank">📎 تحميل الملف</a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% empty %}
+            <p class="no-messages">لا توجد رسائل بعد.</p>
+        {% endfor %}
+    </div>
+
+    <form method="post" enctype="multipart/form-data" class="chat-form">
+        {% csrf_token %}
+        <div class="form-fields">
+            {{ form.as_p }}
+            <label for="id_file">📎 إرفاق ملف:</label>
+            <input type="file" name="file" id="id_file" class="chat-file-input">
         </div>
-    {% empty %}
-        <p class="no-messages">لا توجد رسائل بعد.</p>
-    {% endfor %}
+        <button type="submit" class="chat-button">إرسال</button>
+    </form>
 </div>
 
-<form method="post" class="chat-form">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="chat-button">إرسال</button>
-</form>
 {% endblock %}

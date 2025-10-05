@@ -1,41 +1,66 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/client_orders.css' %}">
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="orders-container">
-    <h2>طلباتي</h2>
+<section class="dashboard-section">
+    <div class="dashboard-container">
+        <h2 class="dashboard-title">
+            <i class="fas fa-file-alt" style="color:#E94B35;margin-left:8px;"></i> 
+            طلباتي
+        </h2>
 
-    {% if orders %}
+        {% if orders %}
         <table class="orders-table">
             <thead>
                 <tr>
                     <th>رقم الطلب</th>
-                    <th>التاريخ</th>
-                    <th>الحالة</th>
+                    <th>تفاصيل الطلب</th>
                     <th>الإجمالي</th>
-                    <th>تفاصيل</th>
+                    <th>الحالة</th>
+                    <th>الإجراء</th>
                 </tr>
             </thead>
             <tbody>
                 {% for order in orders %}
                 <tr>
                     <td>#{{ order.id }}</td>
-                    <td>{{ order.created_at|date:"Y-m-d H:i" }}</td>
-                    <td class="status {{ order.status }}">{{ order.status }}</td>
-                    <td>{{ order.total_cost }} ج.م</td>
                     <td>
-                        <a href="{% url 'order_detail' order.id %}" class="btn btn-detail">عرض</a>
+                        {% if order.file_name %}
+                            <strong>الملف:</strong>
+                            <a href="{{ order.file_name.url }}" target="_blank">
+                                {{ order.file_name.name|slice:"10:" }}
+                            </a><br>
+                        {% endif %}
+                        <strong>تاريخ الإنشاء:</strong> {{ order.created_at|date:"Y-m-d H:i" }}<br>
+                        <strong>نوع الورق:</strong> {{ order.paper_type.paper_type }}<br>
+                        <strong>الحجم:</strong> {{ order.paper_size }}<br>
+                        <strong>اللون:</strong> {{ order.printing_color }}<br>
+                        <strong>عدد الأوراق:</strong> {{ order.number_of_sheets }}<br>
+                        <strong>الكمية:</strong> {{ order.quantity }}<br>
+                        <strong>الطباعة:</strong>
+                        {% if order.printing_sides == "one side" %}
+                            وجه واحد
+                        {% else %}
+                            وجهين
+                        {% endif %}
+                    </td>
+                    <td>{{ order.total_cost|default:"0.00" }} جنيه</td>
+                    <td class="status {{ order.status.name|lower }}">{{ order.status.name }}</td>
+                    <td>
+                        <a href="{% url 'order_detail' order.id %}" class="btn-details">عرض التفاصيل</a><br>
+                        <a href="{% url 'orderchat' order.id %}" class="btn-details" style="margin-top:5px;">عرض المحادثة</a>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-    {% else %}
-        <p class="no-orders">لا توجد طلبات حتى الآن.</p>
-    {% endif %}
-</div>
+        {% else %}
+            <p class="no-orders">لا توجد طلبات حتى الآن.</p>
+        {% endif %}
+    </div>
+</section>
 {% endblock %}

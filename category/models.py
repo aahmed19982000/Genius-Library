@@ -22,3 +22,9 @@ class PaperSize(models.Model):
 
     def __str__(self):
         return self.size
+    
+class Status(models.Model):
+     status = models.CharField(max_length=50, verbose_name="حالة الطلب")
+
+     def __str__(self):
+        return self.status

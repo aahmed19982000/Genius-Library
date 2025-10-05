@@ -1,15 +1,11 @@
 from django.db import models
-from category.models import PaperColor, PaperType, PaperSize
+from category.models import PaperColor, PaperType, PaperSize , Status
 from django.contrib.auth.models import User
 from clients.models import Client
 from django.conf import settings  # لو هتستخدم نظام المستخدمين الافتراضي
 
 class Order(models.Model):
-    STATUS_CHOICES = [
-        ('pending', 'قيد الانتظار'),
-        ('inprogress', 'جاري التنفيذ'),
-        ('done', 'تم التنفيذ'),
-    ]
+ 
 
     PAPER_SIDES=[
         ('one side','وجه واحد'),
@@ -29,7 +25,7 @@ class Order(models.Model):
     address = models.CharField(max_length=255, verbose_name="العنوان")
     notes = models.TextField(null=True, blank=True)
     total_cost = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="إجمالي التكلفة")
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending', verbose_name="الحالة")
+    status =  models.ForeignKey(Status, on_delete=models.CASCADE, verbose_name="الحالة")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="تاريخ الطلب")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="تاريخ آخر تعديل")
 
@@ -42,7 +38,9 @@ class OrderChat(models.Model):
     order = models.ForeignKey("Order", on_delete=models.CASCADE, related_name="chats")  
     sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="sent_messages")  
     message = models.TextField(verbose_name="الرسالة")
+    file = models.FileField(upload_to="chat_files/", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="تاريخ الإرسال")
+    is_read = models.BooleanField(default=False)
 
     def __str__(self):
         return f"Message from {self.sender} - {self.order}"

@@ -1,36 +1,50 @@
 .order-detail-container {
     max-width: 800px;
-    margin: 30px auto;
+    margin: 20px auto;
     background: #fff;
-    padding: 20px;
+    padding: 25px 30px;
     border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     direction: rtl;
     font-family: "Tahoma", sans-serif;
 }
 
 .order-detail-container h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     color: #333;
+    font-size: 24px;
 }
 
 .order-detail-table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 
 .order-detail-table th,
 .order-detail-table td {
-    padding: 10px;
+    padding: 12px 10px;
     border-bottom: 1px solid #ddd;
     text-align: right;
+    vertical-align: middle;
+    word-wrap: break-word;
 }
 
 .order-detail-table th {
     background: #f7f7f7;
-    width: 200px;
+    width: 220px;
     color: #555;
+    font-weight: 600;
+}
+
+.order-detail-table td a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.order-detail-table td a:hover {
+    text-decoration: underline;
 }
 
 /* حالة الطلب */
@@ -48,17 +62,18 @@
 }
 
 .order-actions {
-    margin-top: 20px;
+    margin-top: 25px;
     text-align: center;
 }
 
 .btn {
     display: inline-block;
     margin: 5px;
-    padding: 8px 15px;
+    padding: 10px 18px;
     border-radius: 8px;
     text-decoration: none;
     color: #fff;
+    font-weight: 500;
     transition: 0.3s;
 }
 
@@ -72,4 +87,50 @@
 
 .btn-back {
     background: #6c757d;
+}
+
+/* ======== Responsive ======== */
+@media (max-width: 768px) {
+    .order-detail-container {
+        padding: 20px;
+        margin: 15px;
+    }
+
+    .order-detail-table th,
+    .order-detail-table td {
+        display: block;
+        width: 100%;
+        text-align: right;
+        padding: 10px 5px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .order-detail-table th {
+        background: none;
+        width: 100%;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .order-detail-table td {
+        padding-left: 5px;
+        margin-bottom: 10px;
+    }
+
+    .order-detail-table tr {
+        margin-bottom: 15px;
+        display: block;
+        border-bottom: 2px solid #f1f1f1;
+    }
+}
+
+@media (max-width: 480px) {
+    .order-detail-container h2 {
+        font-size: 20px;
+    }
+
+    .btn {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
 }

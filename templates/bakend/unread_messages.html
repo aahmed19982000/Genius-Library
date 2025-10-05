@@ -1,0 +1,44 @@
+{% extends "dashboard_base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/orders.css' %}">
+{% endblock %}
+
+{% block dashboard_content %}
+<section class="dashboard-section">
+    <div class="dashboard-container">
+        <h2 class="dashboard-title">
+            <i class="fas fa-envelope" style="color:#E94B35;margin-left:8px;"></i> الرسائل الغير مقروءة
+        </h2>
+
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>اسم العميل</th>
+                    <th>محتوى الرسالة</th>
+                    <th>تاريخ الإرسال</th>
+                    <th>الطلب</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for msg in unread %}
+                <tr>
+                    <td>{{ msg.order.customer_name }}</td>
+                    <td>{{ msg.message|truncatewords:12 }}</td>
+                    <td>{{ msg.created_at|date:"Y-m-d H:i" }}</td>
+                    <td>
+                        <a href="/orders/order/{{ msg.order.id }}/chat/" class="btn-details">عرض المحادثه 
+
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" style="text-align:center;">لا توجد رسائل غير مقروءة</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

@@ -8,68 +8,79 @@
 {% block dashboard_content %}
 <section class="dashboard-section">
     <div class="dashboard-container">
+
         <h2 class="dashboard-title">
-            <i class="fas fa-list" style="color:#E94B35;margin-left:8px;"></i> جميع الطلبات
+            <i class="fas fa-list" style="color:#E94B35;margin-left:8px;"></i>
+            جميع الطلبات
         </h2>
 
-        <table class="orders-table">
-            <thead>
-                <tr>
-                    <th>اسم العميل</th>
-                    <th>اسم الملف</th>
-                    <th>نوع الورق</th>
-                    <th>حجم الورق</th>
-                    <th>لون الطباعة</th>
-                    <th>الطباعة على وجه/وجهين</th>
-                    <th>عدد النسخ</th>
-                    <th>العنوان</th>
-                    <th>الحالة</th>
-                    <th>تفاصيل</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for order in orders %}
-                <tr>
-                    <td>{{ order.customer_name }}</td>
-                    <td>
-                        {% if order.file_name %}
-                            <a href="{{ order.file_name.url }}" target="_blank">{{ order.file_name.name|slice:"8:" }}</a>
-                        {% else %}
-                            لا يوجد ملف
-                        {% endif %}
-                    </td>
-                    <td>{{ order.paper_type }}</td>
-                    <td>{{ order.paper_size }}</td>
-                    <td>{{ order.printing_color }}</td>
-                    <td>{{ order.printing_sides }}</td>
-                    <td>{{ order.quantity }}</td>
-                    <td>{{ order.address }}</td>
-                    <td>{{ order.status }}</td>
-                    <td>
-                        <button class="btn-details"
-                            onclick="showOrderDetails(this)"
-                            data-customer_name="{{ order.customer_name }}"
-                            data-file_name="{% if order.file_name %}{{ order.file_name.name|slice:'8:' }}{% else %}لا يوجد ملف{% endif %}"
-                            data-paper_type="{{ order.paper_type }}"
-                            data-paper_size="{{ order.paper_size }}"
-                            data-printing_color="{{ order.printing_color }}"
-                            data-printing_sides="{{ order.printing_sides }}"
-                            data-quantity="{{ order.quantity }}"
-                            data-address="{{ order.address }}"
-                            data-notes="{{ order.notes }}"
-                            data-status="{{ order.status }}"
-                            data-created_at="{{ order.created_at|date:'Y-m-d H:i' }}"
-                            data-updated_at="{{ order.updated_at|date:'Y-m-d H:i' }}"
-                        >عرض التفاصيل</button>
-                    </td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="10" style="text-align:center;">لا يوجد طلبات</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="dashboard-card">
+            <div class="card-header">
+                <h3><i class="fas fa-clipboard-list"></i> قائمة الطلبات</h3>
+            </div>
+            <div class="card-body">
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>اسم العميل</th>
+                            <th>تفاصيل الطلب</th>
+                            <th>إجمالي التكلفة</th>
+                            <th>الحالة</th>
+                            <th>الإجراء</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                        <tr>
+                            <td>{{ order.customer_name|default:"غير محدد" }}</td>
+                            <td class="order-details">
+                                {% if order.file_name %}
+                                <p><strong>الملف:</strong>
+                                    <a href="{{ order.file_name.url }}" target="_blank" class="file-link">
+                                        {{ order.file_name.name|slice:"10:" }}
+                                    </a>
+                                </p>
+                                {% endif %}
+                                <p><strong>نوع الورق:</strong> {{ order.paper_type.paper_type }}</p>
+                                <p><strong>الحجم:</strong> {{ order.paper_size }}</p>
+                                <p><strong>اللون:</strong> {{ order.printing_color }}</p>
+                                <p><strong>عدد الأوراق:</strong> {{ order.number_of_sheets }}</p>
+                                <p><strong>الكمية:</strong> {{ order.quantity }}</p>
+                                <p><strong>الطباعة:</strong>
+                                    {% if order.printing_sides == "one side" %}
+                                        وجه واحد
+                                    {% else %}
+                                        وجهين
+                                    {% endif %}
+                                </p>
+                            </td>
+                            <td><span class="price">{{ order.total_cost|default:"0.00" }} جنيه</span></td>
+                            <td>
+                                <form method="post" action="{% url 'update_order_status' order.id %}">
+                                    {% csrf_token %}
+                                    <select name="status" onchange="this.form.submit()" class="status-select">
+                                        {% for st in all_status %}
+                                            <option value="{{ st.id }}" {% if order.status.id == st.id %}selected{% endif %}>
+                                                {{ st.status }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </form>
+                            </td>
+                            <td>
+                                <a href="{% url 'order_detail' order.id %}" class="btn-details">عرض الطلب</a>
+                                <a href="{% url 'orderchat' order.id %}" class="btn-chat">المحادثة</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5">لا توجد طلبات حالياً</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
         <!-- نافذة منبثقة للتفاصيل -->
         <div id="order-modal" class="order-modal">
@@ -79,12 +90,13 @@
                 <div id="order-details-content"></div>
             </div>
         </div>
+
     </div>
 </section>
 
 <script>
 function showOrderDetails(btn) {
-    var fields = [
+    const fields = [
         ['اسم العميل', btn.dataset.customer_name],
         ['اسم الملف', btn.dataset.file_name],
         ['نوع الورق', btn.dataset.paper_type],
@@ -98,12 +110,12 @@ function showOrderDetails(btn) {
         ['تاريخ الطلب', btn.dataset.created_at],
         ['تاريخ آخر تعديل', btn.dataset.updated_at],
     ];
-    var html = '';
-    fields.forEach(function(f) {
-        html += '<p><strong>' + f[0] + ':</strong> ' + (f[1] ? f[1] : '-') + '</p>';
+    let html = '';
+    fields.forEach(([label, value]) => {
+        html += `<p><strong>${label}:</strong> ${value || '-'}</p>`;
     });
     document.getElementById('order-details-content').innerHTML = html;
-    document.getElementById('order-modal').style.display = 'block';
+    document.getElementById('order-modal').style.display = 'flex';
 }
 
 function closeOrderDetails() {

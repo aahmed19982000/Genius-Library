@@ -1,5 +1,5 @@
 from django import forms
-from .models import PaperColor , PaperType , PaperSize
+from .models import PaperColor , PaperType , PaperSize , Status
 class PaperColorForm(forms.ModelForm):
         class Meta:
           model = PaperColor
@@ -14,3 +14,8 @@ class PaperSizeForm(forms.ModelForm):
      class Meta:
           model = PaperSize
           fields =['size', 'price']
+
+class StatusForm(forms.ModelForm):
+     class Meta:
+          model = Status
+          fields =['status']

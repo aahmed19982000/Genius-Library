@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from home.views import home_view, contact, dashboard
+from home.views import home_view, contact
 from orders.views import client_orders
 from clients.views import register , login_view
 from django.conf import settings
@@ -30,7 +30,6 @@ urlpatterns = [
     path('contact/', contact, name='contact'),
     path('register/', register, name='register'),
     path('login/', login_view, name='login'),
-    path('dashboard/', dashboard, name='dashboard'),
     path('bakend/', include('bakend.urls')), 
     path('category/', include('category.urls')), 
     path('clients/', include('clients.urls')),

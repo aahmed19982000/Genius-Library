@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends base_template %}
 
 {% load static %}
 
@@ -39,7 +39,13 @@
         </tr>
         <tr>
             <th>الطباعة على وجه/وجهين</th>
-            <td>{{ order.printing_sides }}</td>
+            <td>
+                {% if order.printing_sides == "one side" %}
+                    وجه واحد
+                {% else %}
+                    وجهين
+                {% endif %}
+            </td>
         </tr>
         <tr>
             <th>عدد الأوراق</th>
@@ -63,7 +69,22 @@
         </tr>
         <tr>
             <th>الحالة</th>
-            <td class="status {{ order.status }}">{{ order.status }}</td>
+            <td>
+                {% if request.user.user_type == "admin" %}
+                    <form method="post" action="{% url 'update_order_status' order.id %}">
+                        {% csrf_token %}
+                        <select name="status" onchange="this.form.submit()" class="status-select">
+                            {% for st in all_status %}
+                                <option value="{{ st.id }}" {% if order.status.id == st.id %}selected{% endif %}>
+                                    {{ st.status }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                {% else %}
+                    <span class="status {{ order.status|lower }}">{{ order.status }}</span>
+                {% endif %}
+            </td>
         </tr>
         <tr>
             <th>تاريخ الطلب</th>
@@ -77,7 +98,7 @@
 
     <div class="order-actions">
         <a href="{% url 'orderchat' order.id %}" class="btn btn-chat">فتح المحادثة</a>
-        
+        <a href="javascript:history.back()" class="btn btn-back">العودة</a>
     </div>
 </div>
 {% endblock %}
