@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-c30qx@-4s8l5rmvdpv&kf7+0&8s824-zyowk!oti!3mdv&7_o*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app']
 
 
 # Application definition
@@ -79,14 +79,11 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydb',        # اسم القاعدة اللي عملتها في pgAdmin
-        'USER': 'postgres',    # دلوقتي خليها postgres لحد ما نعمل مستخدم جديد
-        'PASSWORD': '1234',  # حط كلمة السر بتاعة postgres
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 # Password validation
