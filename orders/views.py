@@ -319,7 +319,7 @@ def unread_messages(request):
 #وظيفة عرض كل الرسائل للادمن
 @role_required(allowed_roles=['admin'])
 def message(request):
-    unread= OrderChat.objects.filter(is_read=False).order_by('-created_at')
+    unread= OrderChat.objects.order_by('-created_at')
     return render(request, 'bakend/message.html',{"unread": unread})
 
 #وظيفة تعديل حالة الطلب 
