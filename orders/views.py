@@ -173,27 +173,31 @@ def delivery_details(request):
 # وظيفة الدفع وتأكيد البيانات
 @role_required(allowed_roles=['client'])
 def payment_and_confirmation(request):
+    # تأكد من أن base_template دايمًا قيمة صحيحة
+    base_template = "dashboard_base.html" if getattr(request.user, 'is_staff', False) else "base.html"
+
     if request.method == 'POST':
-        file_name = request.session.get('uploaded_file')
+        # جلب البيانات من الجلسة مع قيم افتراضية
+        file_name = request.session.get('uploaded_file', '')
         paper_type_id = request.session.get('paper_type')
         paper_size_id = request.session.get('paper_size')
         printing_color_id = request.session.get('printing_color')
-        printing_sides = request.session.get('printing_sides')
+        printing_sides = request.session.get('printing_sides', '')
         number_of_sheets = int(request.session.get('number_of_sheets', 1))
         quantity = int(request.session.get('quantity', 1))
-        notes = request.session.get('notes')
-        address = request.session.get('delivery_address')
+        notes = request.session.get('notes', '')
+        address = request.session.get('delivery_address', '')
         total_cost = request.session.get('total_cost', 0)
 
-        # هات الكائنات
-        paper_type = PaperType.objects.get(id=paper_type_id) if paper_type_id else None
-        paper_size = PaperSize.objects.get(id=paper_size_id) if paper_size_id else None
-        printing_color = PaperColor.objects.get(id=printing_color_id) if printing_color_id else None
+        # جلب الكائنات بأمان
+        paper_type = PaperType.objects.filter(id=paper_type_id).first() if paper_type_id else None
+        paper_size = PaperSize.objects.filter(id=paper_size_id).first() if paper_size_id else None
+        printing_color = PaperColor.objects.filter(id=printing_color_id).first() if printing_color_id else None
 
+        # الحالة الافتراضية
         pending_status, _ = Status.objects.get_or_create(status='معلقه')
 
-
-        # أنشئ الطلب
+        # إنشاء الطلب
         order = Order.objects.create(
             client=request.user,
             customer_name=request.user.username,
@@ -207,28 +211,34 @@ def payment_and_confirmation(request):
             address=address,
             notes=notes,
             total_cost=total_cost,
-            status= pending_status 
+            status=pending_status
         )
 
+        # مسح الجلسة بعد إنشاء الطلب
         request.session.flush()
-        return render(request, "orders/order_detail.html", {"order": order})
 
-    # لو GET
+        return render(request, "orders/order_detail.html", {
+            "order": order,
+            "base_template": base_template
+        })
+
+    # لو GET، عرض البيانات قبل التأكيد
     paper_type_id = request.session.get('paper_type')
     paper_size_id = request.session.get('paper_size')
     printing_color_id = request.session.get('printing_color')
 
     context = {
-        "file_name": request.session.get('uploaded_file'),
-        "paper_type": PaperType.objects.get(id=paper_type_id).paper_type if paper_type_id else "",
-        "paper_size": PaperSize.objects.get(id=paper_size_id).size if paper_size_id else "",
-        "printing_color": PaperColor.objects.get(id=printing_color_id).color_paper if printing_color_id else "",
-        "printing_sides": request.session.get('printing_sides'),
-        "number_of_sheets": request.session.get('number_of_sheets'),
-        "quantity": request.session.get('quantity'),
-        "address": request.session.get('delivery_address'),
-        "notes": request.session.get('notes'),
-        "total_cost": request.session.get('total_cost'),
+        "file_name": request.session.get('uploaded_file', ''),
+        "paper_type": PaperType.objects.filter(id=paper_type_id).first().paper_type if paper_type_id else "",
+        "paper_size": PaperSize.objects.filter(id=paper_size_id).first().size if paper_size_id else "",
+        "printing_color": PaperColor.objects.filter(id=printing_color_id).first().color_paper if printing_color_id else "",
+        "printing_sides": request.session.get('printing_sides', ''),
+        "number_of_sheets": request.session.get('number_of_sheets', ''),
+        "quantity": request.session.get('quantity', ''),
+        "address": request.session.get('delivery_address', ''),
+        "notes": request.session.get('notes', ''),
+        "total_cost": request.session.get('total_cost', 0),
+        "base_template": base_template,
     }
 
     return render(request, "orders/payment_and_confirmation.html", context)
