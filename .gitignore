@@ -1,28 +1,33 @@
-# Byte-compiled / optimized / DLL files
+# Python bytecode / optimized files
 *.pyc
-__pycache__/
+**/__pycache__/
 
 # Database
 db.sqlite3
 
-# Environment
-.env/
+# Environment & Virtual Envs
+.env
+.venv/
 venv/
+ENV/
 
 # IDEs
+.vscode/
 .idea/
 
 # Logs
 *.log
 
-# Django static files
+# Django static & media files
 staticfiles/
+media/
 
-# Ignore all migrations
-**/migrations/
+# Ignore all migrations (but keep __init__.py)
+**/migrations/*
+!**/migrations/__init__.py
 
-# Optional: prevent committing the main settings (حماية للـ SECRET_KEY)
-settings.py
+# Protective: Ignore main settings to protect SECRET_KEY and Credentials
+**/settings.py
 
 # Git text settings
 * text=auto
