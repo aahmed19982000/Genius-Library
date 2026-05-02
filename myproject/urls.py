@@ -35,6 +35,9 @@ urlpatterns = [
     path('clients/', include('clients.urls')),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     path('my_orders/', client_orders, name='my_orders' ),
+
+    #api
+    path('api/v1/', include('api.urls')),
 ]
 
 # توفير ملفات الميديا أثناء التطوير
